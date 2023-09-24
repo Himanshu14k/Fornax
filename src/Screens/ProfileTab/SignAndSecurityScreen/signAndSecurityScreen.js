@@ -24,7 +24,7 @@ import {
 import {styles1, styles2} from './style';
 
 const SignAndSecurityScreen = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [settingsModalStatus, setSettingsModalStatus] = useState(false);
   const [modalID, setmodalID] = useState('');
   const spId = useSelector(state => state.authStatusR.spId);
@@ -140,7 +140,7 @@ const SignAndSecurityScreen = props => {
   };
 
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -172,7 +172,7 @@ const SignAndSecurityScreen = props => {
         onReload={onReload}
         onClose={handleCloseLS}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -203,7 +203,7 @@ const securityOptions = [
 ];
 
 const SettingModal = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [addField, setaddField] = useState(false);
   const [phone, setphone] = useState(null);
   const [email, setemail] = useState('');
@@ -622,7 +622,7 @@ const SettingModal = props => {
 };
 
 const DifferentSecuritySettingsComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   const onClickChange = title => {
     props.setSettingsModalStatus(!props.settingsModalStatus);

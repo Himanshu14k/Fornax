@@ -1,17 +1,23 @@
-const {StyleSheet} = require('react-native');
+const {StyleSheet, StatusBar} = require('react-native');
 const {
   adjustedFontSize,
   widthToDp,
+  heightToDp,
 } = require('../../../Utils/dimensionsInPixel');
 
 const styles = StyleSheet.create({
-  container1: {
+  container: {
     backgroundColor: '#00d9ff',
-    height: widthToDp(10),
+    height: StatusBar.currentHeight + heightToDp(6.5),
+    // paddingBottom: heightToDp(4)
+  },
+  container1: {
+    flex:1,
     flexDirection: 'row',
+    // backgroundColor: '#00d9ff',
   },
   container2: {
-    height: '100%',
+    // height: '100%',
     width: widthToDp(22),
     justifyContent: 'center',
     alignItems: 'center',
@@ -25,7 +31,7 @@ const styles = StyleSheet.create({
     //fontFamily: 'serif',
   },
   btn1: {
-    height: '100%',
+    // height: '100%',
     width: widthToDp(12),
     justifyContent: 'center',
     alignItems: 'center',
@@ -42,21 +48,23 @@ const styles = StyleSheet.create({
     //fontFamily: 'sans-serif-light',
   },
   container4: {
-    height: '100%',
+    // height: '100%',
+    paddingVertical: heightToDp(1.5),
     width: widthToDp(11),
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
   },
   container5: {
-    height: '100%',
+    // height: '100%',
+    paddingVertical: heightToDp(1.5),
     width: widthToDp(11),
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
   },
   badge1: {
     position: 'absolute',
-    right: widthToDp(0.6),
-    top: widthToDp(1),
+    right: widthToDp(0.75),
+    top: widthToDp(1.3),
     width: widthToDp(4),
     height: widthToDp(4),
     borderRadius: widthToDp(5) / 2,
@@ -78,17 +86,17 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   container6: {
-    height: '100%',
-    width: widthToDp(13),
+    // height: '100%',
+    // width: widthToDp(13),
     paddingHorizontal: widthToDp(2),
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
   },
   image1: {
     width: widthToDp(9),
     height: widthToDp(9),
     borderRadius: widthToDp(10) / 2,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
   },
   container7: {
     flex: 1,

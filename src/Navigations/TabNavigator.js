@@ -64,7 +64,7 @@ const HomeStack = props => {
   return (
     <homeStack.Navigator>
       <homeStack.Screen
-        name="home"
+        name="homeScreen"
         component={HomeScreen}
         options={{headerShown: false}}
       />
@@ -84,7 +84,7 @@ const HomeStack = props => {
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <Tab.Navigator

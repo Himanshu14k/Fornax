@@ -15,7 +15,7 @@ const FloatingBtnSection = ({
   btnStyle = styles.btn,
   btnTitleStyle = styles.btnTitle,
 }) => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   return (
     <View
       style={[

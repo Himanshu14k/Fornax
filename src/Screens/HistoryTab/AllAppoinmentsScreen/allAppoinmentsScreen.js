@@ -21,8 +21,8 @@ import {darkMode, lightMode} from '../../../Utils/Colors';
 const Tab = createMaterialTopTabNavigator();
 
 const AllAppoinmentsScreen = props => {
-  const status = useSelector(state => state.themeR.status);
-  const uId = useSelector(state => state.authStatusR.uId);
+  const status = useSelector(state => state.otherReducer.status);
+  const uId = useSelector(state => state.authenticationReducer.uId);
   const [data1, setdata1] = useState([]);
   const [data2, setdata2] = useState([]);
   const [loadingStatus, setloadingStatus] = useState({status: 1, msg: ''});
@@ -110,7 +110,7 @@ const AllAppoinmentsScreen = props => {
   };
 
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -173,12 +173,12 @@ const AllAppoinmentsScreen = props => {
           />
         </Tab.Navigator>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const AppointmentListComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   function onCardClick(title, type, id, spId = null) {
     try {

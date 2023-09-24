@@ -21,7 +21,7 @@ const DropdownMenuComponent = ({
   renderLeftIcon,
   style,
 }) => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   const renderMenuItem = item => {
     return (
@@ -82,7 +82,7 @@ const MultiSelectComponent = ({
   renderSelectedItem,
   selectedItemContainerStyle,
 }) => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   const checkSimilarity = id => {
     let tempValue = null;

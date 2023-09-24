@@ -10,43 +10,34 @@ import {
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {connect} from 'react-redux';
+import {connect, useDispatch} from 'react-redux';
 import SimpleToast from 'react-native-simple-toast';
 import axios from 'axios';
 import {styles} from './style';
+import {confirmSignUpOtpAction} from '../../../redux/actions/authActions';
+import {ShowAlertMessage} from '../../../helper/showAlertMessage';
+import {popupType} from '../../../Constants/appConstants';
+import {navigate} from '../../../Navigations/navigationServices';
 
-const ConfirmationScreen = props => {
+const ConfirmationScreen = ({route}) => {
+  const dispatch = useDispatch();
   const [cCode, setcCode] = useState('');
-
-  function onSubmit(navigation) {
-    SimpleToast.show((message = 'Loading...'), (duration = 5000));
-    axios
-      .post('https://fornaxbackend.onrender.com/user/validateOtpAndInsert', {
-        otp: cCode,
-      })
-      .then(response => {
-        console.log('getting data from axios', response.data);
-        if (response.data.status === 'failed') {
-          Alert.alert('Error!', response.data.msg, [{text: 'OK'}]);
-        } else {
-          SimpleToast.show((message = 'Registered Successfully!'));
-          navigation.reset({
-            index: 0,
-            routes: [
-              {
-                name: 'login',
-              },
-            ],
-          });
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
+  console.log('cCode', route?.params);
+  const onSubmit = () => {
+    if (cCode?.length === 4) {
+      dispatch(
+        confirmSignUpOtpAction({
+          otp: cCode,
+          signUpData: route?.params,
+        }),
+      );
+    } else {
+      ShowAlertMessage('Please enter 4-digits otp.', popupType.error);
+    }
+  };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <View style={{flex: 1}}>
       <ScrollView contentContainerStyle={{flex: 1}}>
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -83,7 +74,7 @@ const ConfirmationScreen = props => {
               </View>
               <TouchableOpacity
                 activeOpacity={0.6}
-                onPress={() => onSubmit(props.navigation)}
+                onPress={() => onSubmit()}
                 style={styles.submitButton}>
                 <Text style={styles.submitButtontitle}>Confirm</Text>
               </TouchableOpacity>
@@ -94,7 +85,7 @@ const ConfirmationScreen = props => {
                 <TouchableOpacity
                   activeOpacity={0.4}
                   style={styles.touchable}
-                  onPress={() => props.navigation.navigate('login')}>
+                  onPress={() => navigate('login')}>
                   <Text style={styles.touchableTitle}>Back to Sign In.</Text>
                 </TouchableOpacity>
               </View>
@@ -102,13 +93,13 @@ const ConfirmationScreen = props => {
           </View>
         </KeyboardAvoidingView>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    status: state.themeR.status,
+    status: state.otherReducer.status,
   };
 };
 

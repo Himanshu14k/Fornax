@@ -21,12 +21,12 @@ import {
 import {styles1, styles2} from './style';
 
 const HomeScreen = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const dispatch = useDispatch();
-  const docData = useSelector(state => state.hsCachesDocR.docData);
-  const therapistData = useSelector(
-    state => state.hsCachesTheraistR.therapistData,
-  );
+  // const docData = useSelector(state => state.hsCachesDocR.docData);
+  // const therapistData = useSelector(
+  //   state => state.hsCachesTheraistR.therapistData,
+  // );
   // const [docData, setdocData] = useState([]);
   // const [therapistData, settherapistData] = useState([]);
   const [loadingStatus, setloadingStatus] = useState({status: 1, msg: ''});
@@ -97,7 +97,7 @@ const HomeScreen = props => {
   }, []);
 
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -118,7 +118,7 @@ const HomeScreen = props => {
           navigation={props.navigation}
         />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -142,7 +142,7 @@ const BoxComponenet = props => {
 };
 
 const ServicesComponenet = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   return (
     <View
       style={[

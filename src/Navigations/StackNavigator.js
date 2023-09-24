@@ -17,7 +17,7 @@ class MainStack extends Component {
   render() {
     return (
       <mainStack.Navigator
-        initialRouteName="home"
+        initialRouteName="tabNav"
         screenOptions={({navigation}) => ({
           headerMode: 'screen',
           headerTintColor: 'black',
@@ -57,7 +57,7 @@ class MainStack extends Component {
           ),
         })}>
         <mainStack.Screen
-          name="home"
+          name="tabNav"
           component={TabNavigator}
           options={{headerShown: false}}
         />

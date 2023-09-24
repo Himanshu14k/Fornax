@@ -30,7 +30,7 @@ const CustomTextInput = ({
   inputContainerStyle = {},
   inputStyle = {},
 }) => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   return (
     <View
       style={[
@@ -160,7 +160,7 @@ const TitleWithInputComponent = ({
   titleStyle = titleWithInputComponentStyles.title1,
   mainContainerStyle = titleWithInputComponentStyles.container1,
 }) => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <View style={mainContainerStyle}>

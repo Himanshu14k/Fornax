@@ -11,7 +11,7 @@ import {
 } from '../../Molecules/ProgressBar/ProgressBar';
 
 const RatingComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   let rating1 = 4;
   let rating2 = 3;
   let rating3 = 1;
@@ -379,7 +379,7 @@ const reviewData = [
   },
 ];
 const RatingAndReviewComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   var total = 175000;
   return (
     <View

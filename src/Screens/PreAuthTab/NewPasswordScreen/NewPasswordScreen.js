@@ -14,8 +14,14 @@ import SimpleToast from 'react-native-simple-toast';
 import axios from 'axios';
 import {styles} from './style';
 import {widthToDp} from '../../../Utils/dimensionsInPixel';
+import { useDispatch } from 'react-redux';
+import { newPasswordAction } from '../../../redux/actions/authActions';
+import { ShowAlertMessage } from '../../../helper/showAlertMessage';
+import { popupType } from '../../../Constants/appConstants';
 
 const NewPasswordScreen = props => {
+  const dispatch = useDispatch();
+
   const [password, setPassword] = useState('');
   const [cPassword, setCpassword] = useState('');
   const [pVisible, passwordVisibilityStatus] = useState(false);
@@ -34,40 +40,21 @@ const NewPasswordScreen = props => {
     }
   }
 
-  const saveNewPassword = navigation => {
+  const saveNewPassword = () => {
     const res = validatePass();
     if (res === true) {
-      SimpleToast.show((message = 'Loading...'), (duration = 5000));
-      axios
-        .post('https://fornaxbackend.onrender.com/user/resetNewPassword', {
+      dispatch(
+        newPasswordAction({
           password: password,
-        })
-        .then(response => {
-          console.log('getting data from axios', response.data);
-          if (response.data.status === 'failed') {
-            Alert.alert('Error!', response.data.msg, [{text: 'OK'}]);
-          } else {
-            SimpleToast.show((message = response.data.msg));
-            navigation.reset({
-              index: 0,
-              routes: [
-                {
-                  name: 'login',
-                },
-              ],
-            });
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
+        }),
+      );
     } else {
-      Alert.alert('Error!', res, [{text: 'OK'}]);
+      ShowAlertMessage(res, popupType.error);
     }
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <View style={{flex: 1}}>
       <ScrollView contentContainerStyle={{flex: 1}}>
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -201,7 +188,7 @@ const NewPasswordScreen = props => {
           </View>
         </KeyboardAvoidingView>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 

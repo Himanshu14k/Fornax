@@ -26,8 +26,8 @@ import {
 } from '../../../Components/Molecules/CustomLoadings/customLoading';
 
 const UpcomingAppoinmentDetailsScreen = props => {
-  const status = useSelector(state => state.themeR.status);
-  const uId = useSelector(state => state.authStatusR.uId);
+  const status = useSelector(state => state.otherReducer.status);
+  const uId = useSelector(state => state.authenticationReducer.uId);
   const [data, setdata] = useState({});
   const [cancelationReason, setcancelationReason] = useState('');
   const [loadingStatus, setloadingStatus] = useState({
@@ -230,7 +230,7 @@ const UpcomingAppoinmentDetailsScreen = props => {
   };
 
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -316,12 +316,12 @@ const UpcomingAppoinmentDetailsScreen = props => {
         onReload={onReload}
         onClose={handleCloseLS}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
 const CancelationModal = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   return (
     <Modal
       animationType="slide"

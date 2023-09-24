@@ -47,7 +47,7 @@ const dummyDataH = [
 ];
 
 const AssociatedOrganizationSection = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <View
@@ -104,7 +104,7 @@ const AssociatedOrganizationSection = props => {
 };
 
 const ServicesSection = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   return (
     <View
       style={[
@@ -148,7 +148,7 @@ const ServicesSection = props => {
 };
 
 const GeneralInfoSection = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   return (
     <View
       style={[
@@ -229,7 +229,7 @@ const GeneralInfoSection = props => {
 };
 
 const AboutSection = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [activeId, setActiveId] = useState('');
 
   const changeActive = id => {
@@ -467,7 +467,7 @@ const AboutSection = props => {
 };
 
 const ContactDetailsSection = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   return (
     <View
       style={[

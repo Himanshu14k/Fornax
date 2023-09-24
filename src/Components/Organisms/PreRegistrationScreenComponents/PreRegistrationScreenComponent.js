@@ -21,7 +21,7 @@ import {
 } from '../../Molecules/DropdownMenu/DropDownMenuComponent';
 
 const ProfileAndCoverPicSection = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <View style={profileAndCoverPicSectionStyles.container1}>
@@ -133,7 +133,7 @@ const ProgressStatusSection = props => {
 };
 
 const InputWithTitleComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <View style={differentUserInputComponetStyles.contentContainer1}>
@@ -172,7 +172,7 @@ const InputWithTitleComponent = props => {
 };
 
 const DropdownMenuWithTitleComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <View style={differentUserInputComponetStyles.contentContainer1}>
@@ -228,7 +228,7 @@ const DropdownMenuWithTitleComponent = props => {
 };
 
 const RadioBtnWithTitleComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   return (
     <View style={differentUserInputComponetStyles.contentContainer1}>
       <View style={differentUserInputComponetStyles.contentTitleContainer}>
@@ -317,7 +317,7 @@ const RadioBtnWithTitleComponent = props => {
 };
 
 const MultiSelectDropdownWithTitleComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <View style={multiSelectDropdownWithTitleStyles.container1}>
@@ -384,7 +384,7 @@ const MultiSelectDropdownWithTitleComponent = props => {
 };
 
 const CustomMultiSelectDropdownWithTitleComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <View style={customMultiSelectDropdownWithTitleComponentStyles.container1}>

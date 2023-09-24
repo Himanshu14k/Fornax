@@ -28,8 +28,8 @@ import {styles1, styles2, styles3} from './styles';
 const Tab = createMaterialTopTabNavigator();
 
 const DiffCaringSPDetailsScreen = props => {
-  const status = useSelector(state => state.themeR.status);
-  const uId = useSelector(state => state.authStatusR.uId);
+  const status = useSelector(state => state.otherReducer.status);
+  const uId = useSelector(state => state.authenticationReducer.uId);
   const [data, setdata] = useState({});
   const [loadingStatus, setloadingStatus] = useState({status: 1, msg: ''});
   const [day, setDay] = useState('');
@@ -282,7 +282,7 @@ const DiffCaringSPDetailsScreen = props => {
   };
 
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -378,7 +378,7 @@ const DiffCaringSPDetailsScreen = props => {
         onReload={onReload1}
         onClose={handleCloseLS}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -506,7 +506,7 @@ const hoursData = [
 ];
 
 const BookServiceComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   const calConsultaionFee = () => {
     return props.hours?.value * parseInt(props.fees) * props.day;
@@ -898,7 +898,7 @@ const BookServiceComponent = props => {
 };
 
 const PatientCareProviderDetailsComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <View
@@ -925,7 +925,7 @@ const PatientCareProviderDetailsComponent = props => {
 };
 
 const PatientCareServiceComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <View
@@ -977,7 +977,7 @@ const PatientCareServiceComponent = props => {
 };
 
 const GeneralAndProfessionalDetailsComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <View

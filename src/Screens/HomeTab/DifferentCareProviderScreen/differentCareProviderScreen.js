@@ -20,7 +20,7 @@ import axios from 'axios';
 import {CustomLoading2} from '../../../Components/Molecules/CustomLoadings/customLoading';
 
 const DifferentCareProviderScreen = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [data, setData] = useState([]);
   const [loadingStatus, setloadingStatus] = useState({status: 1, msg: ''});
   const [refreshing, setRefreshing] = useState(false);
@@ -81,7 +81,7 @@ const DifferentCareProviderScreen = props => {
   }, []);
 
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -106,12 +106,12 @@ const DifferentCareProviderScreen = props => {
           setloadingStatus={setloadingStatus}
         />
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 
 const ProviderListComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [seacrhItem, setseacrhItem] = useState('');
 
   const onCancelSearch = () => {
@@ -238,7 +238,7 @@ const ProviderListComponent = props => {
 };
 
 const ProviderComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <TouchableOpacity

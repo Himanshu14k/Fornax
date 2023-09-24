@@ -27,7 +27,7 @@ import {DropdownMenuComponent} from '../../Molecules/DropdownMenu/DropDownMenuCo
 import {ViewPicModal} from '../../Molecules/ViewPic/viewPicModal';
 
 const PrescriptionComponent = () => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   return (
     <View
       style={[
@@ -82,7 +82,7 @@ const PrescriptionComponent = () => {
 };
 
 const ProfileSectionComponent2 = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <View
@@ -191,7 +191,7 @@ const ProfileSectionComponent2 = props => {
 };
 
 const ServiceOverviewComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   return (
     <View
       style={[
@@ -377,7 +377,7 @@ const ServiceOverviewComponent = props => {
 };
 
 const HomeVistSessionRecordsComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [onItemClickId, setonItemClickId] = useState('');
 
   const onClickSessionCancel = id => {
@@ -817,7 +817,7 @@ const hoursData = [
 ];
 
 const EditServiceModal = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   const changeHrIntoDD = val => {
     if (val.length == 1) {
@@ -1396,7 +1396,7 @@ const dummyData = [
 ];
 
 const ReviewAppoinmentComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [selectedItem, setSelectedItem] = useState(1);
   const [viewPicModalStatus, setviewPicModalStatus] = useState(false);
   const [modalImage, setmodalImage] = useState(null);
@@ -1798,7 +1798,7 @@ const ReviewAppoinmentComponent = props => {
 };
 
 const PaymentDetailsComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   return (
     <View
       style={[
@@ -1888,7 +1888,7 @@ const TwoBtnContentComponent = ({
   onBtn1Press = () => {},
   onBtn2Press = () => {},
 }) => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   return (
     <View
       style={[

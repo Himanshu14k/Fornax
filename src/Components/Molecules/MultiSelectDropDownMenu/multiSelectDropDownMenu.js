@@ -15,7 +15,7 @@ import {styles} from './style';
 import {darkMode, lightMode} from '../../../Utils/Colors';
 
 const DropDownContent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [mainData, setMainData] = useState(props.data);
   const [filterData, setFilterData] = useState(props.data);
   const [searchItem, setUpdateSearchItem] = useState('');

@@ -19,8 +19,9 @@ import {styles} from './styles';
 import { widthToDp } from '../../../Utils/dimensionsInPixel';
 
 const NotificationScreen = props => {
-  const status = useSelector(state => state.themeR.status);
-  const uId = useSelector(state => state.authStatusR.uId);
+  const status = useSelector(state => state.otherReducer.status);
+  
+  const uId = useSelector(state => state.authenticationReducer.uId);
   const [data, setdata] = useState({});
   const [loadingStatus, setloadingStatus] = useState({status: 1, msg: ''});
 
@@ -67,7 +68,7 @@ const NotificationScreen = props => {
   };
 
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -106,12 +107,12 @@ const NotificationScreen = props => {
           setloadingStatus={onReload}
         />
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 
 const NotificationsComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [visible, setVisible] = useState(false);
   const openMenu = () => setVisible(!visible);
   return (

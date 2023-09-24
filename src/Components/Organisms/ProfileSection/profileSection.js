@@ -8,7 +8,7 @@ import {widthToDp} from '../../../Utils/dimensionsInPixel';
 import {styles1, styles2} from './style';
 
 const ProfileSectionComponent1 = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [viewPicModalStatus, setviewPicModalStatus] = useState(false);
   const [modalImage, setmodalImage] = useState(null);
 
@@ -112,7 +112,7 @@ const ProfileSectionComponent1 = props => {
 };
 
 const ProfileSectionComponent2 = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <View

@@ -10,14 +10,18 @@ import {
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {connect} from 'react-redux';
+import {connect, useDispatch} from 'react-redux';
 import SimpleToast from 'react-native-simple-toast';
 import axios from 'axios';
 import {Icon} from '@rneui/themed';
 import {styles} from './style';
 import {widthToDp} from '../../../Utils/dimensionsInPixel';
+import { signUpAction } from '../../../redux/actions/authActions';
+import { ShowAlertMessage } from '../../../helper/showAlertMessage';
+import { popupType } from '../../../Constants/appConstants';
 
-const RegisterScreen = props => {
+const SignUpScreen = props => {
+  const dispatch = useDispatch();
   const [fName, onChangeFName] = useState('');
   const [lName, onChangeLName] = useState('');
   const [email, onChangeEmail] = useState('');
@@ -65,45 +69,27 @@ const RegisterScreen = props => {
     return emailValidation.test(email);
   }
 
-  const registerUser = navigation => {
+  const registerUser = () => {
     const res = finalValidation();
     if (res === true) {
-      SimpleToast.show((message = 'Loading...'), (duration = 5000));
-      axios
-        .post('https://fornaxbackend.onrender.com/user/register', {
+      dispatch(
+        signUpAction({
           name: fName + ' ' + lName,
           email: email,
           phone_number: '+91' + pNumber,
           password: password,
+          fcmToken: '',
+          type: 'User',
           tc: tc,
-        })
-        .then(response => {
-          console.log('getting data from axios', response.data);
-          if (response.data.status === 'failed') {
-            Alert.alert('Error!', response.data.msg, [{text: 'OK'}]);
-          } else {
-            // SimpleToast.show((message = 'OTP shared!'));
-            navigation.navigate('confirmation');
-            // navigation.reset({
-            //   index: 0,
-            //   routes: [
-            //     {
-            //       name: 'login',
-            //     },
-            //   ],
-            // });
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
+        }),
+      );
     } else {
-      Alert.alert('Error!', res, [{text: 'OK'}]);
+      ShowAlertMessage(res, popupType.error);
     }
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <View style={{flex: 1}}>
       <ScrollView contentContainerStyle={{flex: 1}}>
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -399,14 +385,14 @@ const RegisterScreen = props => {
           </View>
         </KeyboardAvoidingView>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    status: state.themeR.status,
+    status: state.otherReducer.status,
   };
 };
 
-export default connect(mapStateToProps)(RegisterScreen);
+export default connect(mapStateToProps)(SignUpScreen);

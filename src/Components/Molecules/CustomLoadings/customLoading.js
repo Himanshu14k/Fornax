@@ -14,7 +14,7 @@ import {adjustedFontSize, widthToDp} from '../../../Utils/dimensionsInPixel';
 import {commonColorsStyle, darkMode, lightMode} from '../../../Utils/Colors';
 
 const CustomLoading1 = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <Modal
@@ -59,7 +59,7 @@ const CustomLoading1 = props => {
 };
 
 const CustomLoading2 = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <View style={styles2.container1}>
@@ -91,7 +91,7 @@ const CustomLoading2 = props => {
 };
 
 const TextWithAnimatedDots_Loading = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <View style={styles2.container1}>

@@ -34,8 +34,8 @@ import {styles1, styles2} from './styles';
 import {hoursData} from '../../../Components/Organisms/CompsForDifferentSessionDetailsScreens/compsForDifferentSessionDetailsScreens';
 
 const RequestedDCSPServiceScreen = props => {
-  const status = useSelector(state => state.themeR.status);
-  const uId = useSelector(state => state.authStatusR.uId);
+  const status = useSelector(state => state.otherReducer.status);
+  const uId = useSelector(state => state.authenticationReducer.uId);
   const [data, setdata] = useState({});
   const [loadingStatus, setloadingStatus] = useState({status: 1, msg: ''});
   const [modalStatus, setmodalStatus] = useState(false);
@@ -434,7 +434,7 @@ const RequestedDCSPServiceScreen = props => {
   };
 
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -519,12 +519,12 @@ const RequestedDCSPServiceScreen = props => {
         onReload={onReload2}
         onClose={handleCloseLS2}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
 const ReceiverComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <View
@@ -886,7 +886,7 @@ const ReceiverComponent = props => {
 };
 
 const SenderComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   return (
     <View
@@ -1216,7 +1216,7 @@ const SenderComponent = props => {
 };
 
 const EditRequeuestedServiceModal = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   let d1 = props?.data?.date?.start.split('/');
   let t1 = props?.data?.time?.start.split(/[:\s]+/);

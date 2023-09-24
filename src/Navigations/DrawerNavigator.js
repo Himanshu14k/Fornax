@@ -14,24 +14,25 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useSelector} from 'react-redux';
 import {darkMode, lightMode} from '../Utils/Colors';
 import {adjustedFontSize, widthToDp} from '../Utils/dimensionsInPixel';
+import AuthenticationStack from './AuthStatckNavigator';
 
 const drawer = createDrawerNavigator();
 
-const DrawerNavigator = () => {
+const DrawerNavigator = props => {
   return (
     <drawer.Navigator
-      initialRouteName="MenuTab"
+      initialRouteName={props?.data}
       drawerContent={props => <CustomDrawerContent {...props} />}>
       <drawer.Screen
-        name="MenuTab"
+        name="auth"
+        component={AuthenticationStack}
+        options={{headerShown: false}}
+      />
+      <drawer.Screen
+        name="home"
         component={MainStack}
         options={{headerShown: false}}
       />
-      {/* <drawer.Screen
-        name="allAppoinments"
-        component={AllAppoinmentsScreen}
-        options={{headerShown: false}}
-      /> */}
     </drawer.Navigator>
   );
 };
@@ -70,7 +71,7 @@ const drawerItemData = [
 ];
 
 const CustomDrawerContent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const OnDrawerItemClick = item => {
     if (item === 'All Appoinments') {
       props.navigation.navigate('allAppoinments');
@@ -84,7 +85,7 @@ const CustomDrawerContent = props => {
   };
 
   return (
-    <SafeAreaView
+    <View
       style={[
         styles.container1,
         status
@@ -170,7 +171,7 @@ const CustomDrawerContent = props => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 

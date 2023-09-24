@@ -20,9 +20,9 @@ import CustomHeader from '../../../Components/Molecules/CustomHeader/CustomHeade
 import {styles} from './style';
 
 const AccountSettingScreen = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -31,7 +31,7 @@ const AccountSettingScreen = props => {
       }}>
       <CustomHeader navigation={props.navigation} />
       <DoctorProfileSettingComponent />
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -189,7 +189,7 @@ const data = [
 ];
 
 const DoctorProfileSettingComponent = () => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [name, setname] = useState('Himanshu Kumar Jha');
   const [location, setlocation] = useState('Chandigarh');
   const [specilization, setspecilization] = useState('Data Scientist');

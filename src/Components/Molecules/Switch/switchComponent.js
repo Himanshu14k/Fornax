@@ -17,7 +17,7 @@ const SwitchComponent = props => {
 
 const mapStateToProps = state => {
   return {
-    status: state.themeR.status,
+    status: state.otherReducer.status,
   };
 };
 

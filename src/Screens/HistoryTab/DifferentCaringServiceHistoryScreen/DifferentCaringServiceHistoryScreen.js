@@ -17,7 +17,7 @@ import {CustomLoading2} from '../../../Components/Molecules/CustomLoadings/custo
 
 const Tab = createMaterialTopTabNavigator();
 const DifferentCaringServiceHistoryScreen = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [data, setdata] = useState({});
   const [loadingStatus, setloadingStatus] = useState({
     status: 1,
@@ -69,7 +69,7 @@ const DifferentCaringServiceHistoryScreen = props => {
   };
   // Till here
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -139,12 +139,12 @@ const DifferentCaringServiceHistoryScreen = props => {
       ) : (
         <CustomLoading2 loadingStatus={loadingStatus} onReload={onReload} />
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 
 const ServiceDetailsSectionComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   return (
     <ScrollView
       contentContainerStyle={{

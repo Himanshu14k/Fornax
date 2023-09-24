@@ -10,58 +10,52 @@ import {
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import SimpleToast from 'react-native-simple-toast';
 import axios from 'axios';
 import {styles} from './style';
+import {
+  forgetPasswordAction,
+  verifyOtpAction,
+} from '../../../redux/actions/authActions';
+import {ShowAlertMessage} from '../../../helper/showAlertMessage';
+import {popupType} from '../../../Constants/appConstants';
 
 const ResetPassScreen = props => {
   const [email, setemail] = useState('');
   const [otp, setotp] = useState('');
   const [isUserRegistered, setisUserRegistered] = useState(false);
 
-  function onSendOtp() {
-    SimpleToast.show((message = 'Loading...'), (duration = 5000));
-    axios
-      .post('https://fornaxbackend.onrender.com/user/resetPassword', {
-        email: email,
-      })
-      .then(response => {
-        console.log('getting data from axios', response.data);
-        if (response.data.status === 'failed') {
-          Alert.alert('Error!', response.data.msg, [{text: 'OK'}]);
-        } else {
-          SimpleToast.show((message = 'OTP Successfully Send.'));
-          setisUserRegistered(true);
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
+  const dispatch = useDispatch();
+  const receivedOtpStatus = useSelector(
+    state => state.authenticationReducer.receivedOtpStatus,
+  );
+  const onSendOtp = () => {
+    if (email?.length > 4) {
+      dispatch(
+        forgetPasswordAction({
+          email: email,
+        }),
+      );
+    } else {
+      ShowAlertMessage('Please enter valid e-mail ID.', popupType.error);
+    }
+  };
 
-  function onConfirmOTP(navigation) {
-    SimpleToast.show((message = 'Loading...'), (duration = 5000));
-    axios
-      .post('https://fornaxbackend.onrender.com/user/validateOtp', {
-        otp: otp,
-      })
-      .then(response => {
-        console.log('getting data from axios', response.data);
-        if (response.data.status === 'failed') {
-          Alert.alert('Error!', response.data.msg, [{text: 'OK'}]);
-        } else {
-          SimpleToast.show((message = response.data.msg));
-          navigation.navigate('newPassword');
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
+  const onConfirmOTP = () => {
+    if (otp?.length == 4) {
+      dispatch(
+        verifyOtpAction({
+          otp: otp,
+        }),
+      );
+    } else {
+      ShowAlertMessage('Please enter valid e-mail ID.', popupType.error);
+    }
+  };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <View style={{flex: 1}}>
       <ScrollView contentContainerStyle={{flex: 1}}>
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -84,7 +78,7 @@ const ResetPassScreen = props => {
                   outlineColor="#00d9ff"
                 />
               </View>
-              {isUserRegistered && (
+              {receivedOtpStatus && (
                 <View style={styles.inputContainer}>
                   <View style={styles.titleHeaderContainer}>
                     <Text style={styles.titleHeader}>Enter OTP</Text>
@@ -102,13 +96,13 @@ const ResetPassScreen = props => {
               <TouchableOpacity
                 activeOpacity={0.6}
                 onPress={
-                  !isUserRegistered
+                  !receivedOtpStatus
                     ? () => onSendOtp()
                     : () => onConfirmOTP(props.navigation)
                 }
                 style={styles.submitButton}>
                 <Text style={styles.submitButtontitle}>
-                  {isUserRegistered ? 'Confirm' : 'Send'}
+                  {receivedOtpStatus ? 'Confirm' : 'Send'}
                 </Text>
               </TouchableOpacity>
 
@@ -122,13 +116,13 @@ const ResetPassScreen = props => {
           </View>
         </KeyboardAvoidingView>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    status: state.themeR.status,
+    status: state.otherReducer.status,
   };
 };
 

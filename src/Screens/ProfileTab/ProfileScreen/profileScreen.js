@@ -25,8 +25,8 @@ import {MediaSelectionOptionModal} from '../../../Components/Molecules/MediaSele
 import {androidCameraPermission} from '../../../Utils/DifferentPermissionAccess';
 
 const ProfileScreen = props => {
-  const status = useSelector(state => state.themeR.status);
-  const uId = useSelector(state => state.authStatusR.uId);
+  const status = useSelector(state => state.otherReducer.status);
+  const uId = useSelector(state => state.authenticationReducer.uId);
   const [ms1, setms1] = useState(false);
   const [ms2, setms2] = useState(false);
   const [file, setnewPP] = useState('');
@@ -177,7 +177,7 @@ const ProfileScreen = props => {
   };
 
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -209,12 +209,12 @@ const ProfileScreen = props => {
         // document
         setmediaPath={setnewPP}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
 const ChangeProfilePicModal = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   const onChangeModalStatus = () => {
     props.setModalStatus(!props.modalStatus);
@@ -292,7 +292,7 @@ const ChangeProfilePicModal = props => {
 };
 
 const TopAreaContainerComponent = () => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   return (
     <View style={styles2.container1}>
       <View style={styles2.container2}>
@@ -344,7 +344,9 @@ const dummyData = [
 ];
 
 const BottomAreaContainerComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
+  const name = useSelector(state => state.authenticationReducer.name);
+
   const dispatch = useDispatch();
 
   const onSelectImage = async () => {
@@ -501,7 +503,7 @@ const BottomAreaContainerComponent = props => {
               styles3.title1,
               status ? darkMode.textColor : lightMode.textColor,
             ]}>
-            Himanshu Kumar Jha
+            {name}
           </Text>
         </View>
       </View>

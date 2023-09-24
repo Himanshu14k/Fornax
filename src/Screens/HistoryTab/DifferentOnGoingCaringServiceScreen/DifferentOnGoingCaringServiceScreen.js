@@ -32,7 +32,7 @@ import {styles} from './style';
 
 const Tab = createMaterialTopTabNavigator();
 const DifferentOnGoingCaringServiceScreen = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [data, setdata] = useState({});
   const [loadingStatus, setloadingStatus] = useState({
     status: 1,
@@ -561,7 +561,7 @@ const DifferentOnGoingCaringServiceScreen = props => {
   };
 
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -677,12 +677,12 @@ const DifferentOnGoingCaringServiceScreen = props => {
         setHours={setHours}
         handleSessionModification={handleSessionModification}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
 const ServiceDetailsSectionComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const onClickSessionTerminate = () => {
     Alert.alert(
       'Alert !!',
@@ -738,7 +738,7 @@ const ServiceDetailsSectionComponent = props => {
 };
 
 const SessionCancelationModal = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
 
   const onModalClose = () => {
     props.onChangeModalStatus(false);

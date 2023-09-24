@@ -222,7 +222,7 @@ CircularProgressBar.defaultProps = {
 };
 
 const LinearProgressBar = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   let percentage = ((props.value / props.total) * 100).toString();
 
   return (

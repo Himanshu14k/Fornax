@@ -16,41 +16,26 @@ import axios from 'axios';
 import {styles} from './style';
 import {setAuthStatus} from '../../../States/Actions/AuthStatusActions/actions';
 import SimpleToast from 'react-native-simple-toast';
+import CustomHeader from '../../../Components/Molecules/CustomHeader/CustomHeader';
+import { loginAction } from '../../../redux/actions/authActions';
 
 const LoginScreen = props => {
   const dispatch = useDispatch();
-  const [email, onChangeEmail] = useState('');
-  const [password, onChangePassword] = useState('');
+  const [email, onChangeEmail] = useState('u3@gmail.com');
+  const [password, onChangePassword] = useState('asdf14K@%');
   const [visible, onChangeVisibilityStatus] = useState(false);
 
   const loginUser = async () => {
-    SimpleToast.show((message = 'Loading...'), (duration = 5000));
-    axios
-      .post('https://fornaxbackend.onrender.com/user/login', {
+    dispatch(
+      loginAction({
         email: email,
         password: password,
-      })
-      .then(response => {
-        if (response.data.status === 'failed') {
-          Alert.alert('Error!', response.data.msg, [{text: 'OK'}]);
-        } else {
-          SimpleToast.show((message = 'Welcome...'));
-          dispatch(
-            setAuthStatus(
-              (authStatus = true),
-              (authToken = response.data.token),
-              (uId = response.data.uId),
-            ),
-          );
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
+      }),
+    );
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: 'pink'}}>
       <ScrollView contentContainerStyle={{flex: 1}}>
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -185,7 +170,7 @@ const LoginScreen = props => {
                   <TouchableOpacity
                     activeOpacity={0.4}
                     style={styles.registerTouchableArea}
-                    onPress={() => props.navigation.navigate('register')}>
+                    onPress={() => props.navigation.navigate('signUp')}>
                     <Text style={styles.touchableTitle}>Register Now!</Text>
                   </TouchableOpacity>
                 </View>
@@ -194,13 +179,13 @@ const LoginScreen = props => {
           </View>
         </KeyboardAvoidingView>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    status: state.themeR.status,
+    status: state.otherReducer.status,
   };
 };
 

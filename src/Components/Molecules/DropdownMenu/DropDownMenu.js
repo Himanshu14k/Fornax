@@ -8,7 +8,7 @@ import {darkMode, lightMode} from '../../../Utils/Colors';
 import {widthToDp} from '../../../Utils/dimensionsInPixel';
 
 const DropDownMenu = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [searchItem, setSearchItem] = useState('');
   const [filteredData, setfilteredData] = useState(props.data);
 

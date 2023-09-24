@@ -3,7 +3,7 @@ import React from 'react';
 import ConfirmationScreen from '../Screens/PreAuthTab/ConfirmationScreen/ConfirmationScreen';
 import LoginScreen from '../Screens/PreAuthTab/LoginScreen/LoginScreen';
 import NewPasswordScreen from '../Screens/PreAuthTab/NewPasswordScreen/NewPasswordScreen';
-import RegisterScreen from '../Screens/PreAuthTab/RegisterScreen/RegisterScreen';
+import SignUpScreen from '../Screens/PreAuthTab/SignUpScreen';
 import ResetPassScreen from '../Screens/PreAuthTab/ResetPassScreen/ResetPassScreen';
 
 const authStack = createStackNavigator();
@@ -17,8 +17,8 @@ const AuthenticationStack = props => {
         options={{headerShown: false}}
       />
       <authStack.Screen
-        name="register"
-        component={RegisterScreen}
+        name="signUp"
+        component={SignUpScreen}
         options={{headerShown: false}}
       />
       <authStack.Screen

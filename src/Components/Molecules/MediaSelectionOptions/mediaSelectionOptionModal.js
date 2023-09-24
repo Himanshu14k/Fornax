@@ -48,7 +48,7 @@ const MediaSelectionOptionModal = ({
   audio,
   setmediaPath,
 }) => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [viewPicModalStatus, setviewPicModalStatus] = useState(false);
 
   const captureImage = async () => {

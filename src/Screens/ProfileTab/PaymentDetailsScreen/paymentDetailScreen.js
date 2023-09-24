@@ -17,14 +17,14 @@ import {darkMode, lightMode} from '../../../Utils/Colors';
 import {styles1, styles2, styles3} from './style';
 
 const PaymentDetailScreen = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [monthsListModalStatus, setmonthsListModalStatus] = useState(false);
   const [yearsListModalStatus, setyearsListModalStatus] = useState(false);
   const [paymentDetailModalStatus, setpaymentDetailModalStatus] =
     useState(false);
 
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -52,7 +52,7 @@ const PaymentDetailScreen = props => {
         paymentDetailModalStatus={paymentDetailModalStatus}
         setpaymentDetailModalStatus={setpaymentDetailModalStatus}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -72,7 +72,7 @@ const monthData = [
 ];
 
 const MonthsListModal = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [selectedMonth, setselectedMonth] = useState('');
 
   const onModalClose = () => {
@@ -207,7 +207,7 @@ const MonthsListModal = props => {
 const yearData = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022];
 
 const YearListModal = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const [selectedYears, setselectedYears] = useState(null);
 
   const onModalClose = () => {
@@ -340,7 +340,7 @@ const YearListModal = props => {
 };
 
 const PaymentDetailModal = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   const onModalClose = () => {
     props.setpaymentDetailModalStatus(!props.paymentDetailModalStatus);
   };
@@ -587,7 +587,7 @@ const paymentsData = [
 ];
 
 const PaymentListComponent = props => {
-  const status = useSelector(state => state.themeR.status);
+  const status = useSelector(state => state.otherReducer.status);
   return (
     <View
       style={[
