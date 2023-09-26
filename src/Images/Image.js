@@ -7,6 +7,7 @@ const IMAGE = {
 
   ICON_DOCTOR_WHITE: require('../Assets/Icons/DoctorWhite.png'),
   ICON_DOCTOR_BLACK: require('../Assets/Icons/DoctorBlack.png'),
+  HEALTH_RECORDS: require('../Assets/Icons/records.png'),
 
   ICON_PROFILE_WHITE: require('../Assets/Icons/ProfileWhite.png'),
   ICON_PROFILE_BLACK: require('../Assets/Icons/ProfileBlack.png'),

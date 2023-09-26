@@ -13,7 +13,7 @@ import AllAppoinmentsScreen from '../Screens/HistoryTab/AllAppoinmentsScreen/all
 import NotificationScreen from '../Screens/NotificationTab/NotificationScreen/NotificationScreen';
 import HomeScreen from '../Screens/HomeTab/HomeScreen';
 import DifferentCareProviderScreen from '../Screens/HomeTab/DifferentCareProviderScreen';
-import DiffCaringSPDetailsScreen from '../Screens/HomeTab/DiffCaringSPDetailsScreen';
+import DiffCaringSPDetailsScreen from '../Screens/HomeTab/DiffCaringSPDetailsScreen/diffCaringSPDetailsScreen';
 import ServicesScreen from '../Screens/ServicesTab/ServicesScreen';
 import SpecialitiesScreen from '../Screens/ServicesTab/SpecialitiesScreen';
 import DoctorListScreen from '../Screens/ServicesTab/DoctorListScreen';
@@ -79,7 +79,7 @@ const HomeStack = props => {
         options={{headerShown: false}}
       />
       <homeStack.Screen
-        name="diffCaringSPDetails"
+        name="const status = useSelector(state => state.otherReducer.status)"
         component={DiffCaringSPDetailsScreen}
         options={{headerShown: false}}
       />
@@ -122,7 +122,7 @@ const ServiceStack = props => {
         options={{headerShown: false}}
       />
       <serviceStack.Screen
-        name="diffCaringSPDetails"
+        name="const status = useSelector(state => state.otherReducer.status)"
         component={DiffCaringSPDetailsScreen}
         options={{headerShown: false}}
       />

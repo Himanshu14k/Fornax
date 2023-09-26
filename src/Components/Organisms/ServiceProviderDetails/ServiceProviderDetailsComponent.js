@@ -122,27 +122,20 @@ const ServicesSection = props => {
           Services offered by Dr. {props.name}
         </Text>
       </View>
-      {props.loadingStatus.status === 2 ? (
-        <View style={serviceSectionStyles.container3}>
-          {props?.services?.map((item, id) => (
-            <Text
-              key={id}
-              style={[
-                serviceSectionStyles.title2,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              ---> {'   '}
-              {item?.title}
-            </Text>
-          ))}
-        </View>
-      ) : (
-        <TextWithAnimatedDots_Loading
-          text="Loading"
-          loadingStatus={props.loadingStatus}
-          setloadingStatus={props.setloadingStatus}
-        />
-      )}
+      <View style={serviceSectionStyles.container3}>
+        {/* {props?.services?.map((item, id) => ( */}
+        {dummtempData.map((item, id) => (
+          <Text
+            key={id}
+            style={[
+              serviceSectionStyles.title2,
+              status ? darkMode.textColor : lightMode.textColor,
+            ]}>
+            ---> {'   '}
+            {'item?.title'}
+          </Text>
+        ))}
+      </View>
     </View>
   );
 };
@@ -166,67 +159,58 @@ const GeneralInfoSection = props => {
           General Details About Dr. {props.name}
         </Text>
       </View>
-      {props.loadingStatus.status === 2 ? (
-        <>
-          <View style={generalInfoStyles.container3}>
-            <Text
-              style={[
-                generalInfoStyles.title2,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              {props.about}
-            </Text>
-          </View>
-          <View style={[generalInfoStyles.container4]}>
-            <Text
-              style={[
-                generalInfoStyles.title3,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              Speciality in {props.speciality}
-            </Text>
-          </View>
-          <View
-            style={[
-              generalInfoStyles.container5,
-              status
-                ? darkMode.screenBackgroundColors
-                : lightMode.screenBackgroundColors,
-            ]}>
-            <Text
-              style={[
-                generalInfoStyles.title4,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              125 Tele-Consultation has been done.
-            </Text>
-          </View>
-          <View
-            style={[
-              generalInfoStyles.container5,
-              status
-                ? darkMode.screenBackgroundColors
-                : lightMode.screenBackgroundColors,
-            ]}>
-            <Text
-              style={[
-                generalInfoStyles.title4,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              125 InPerson-Consultation has been done.
-            </Text>
-          </View>
-        </>
-      ) : (
-        <TextWithAnimatedDots_Loading
-          text="Loading"
-          loadingStatus={props.loadingStatus}
-          setloadingStatus={props.setloadingStatus}
-        />
-      )}
+      <View style={generalInfoStyles.container3}>
+        <Text
+          style={[
+            generalInfoStyles.title2,
+            status ? darkMode.textColor : lightMode.textColor,
+          ]}>
+          {props.about}
+        </Text>
+      </View>
+      <View style={[generalInfoStyles.container4]}>
+        <Text
+          style={[
+            generalInfoStyles.title3,
+            status ? darkMode.textColor : lightMode.textColor,
+          ]}>
+          Speciality in {props.speciality}
+        </Text>
+      </View>
+      <View
+        style={[
+          generalInfoStyles.container5,
+          status
+            ? darkMode.screenBackgroundColors
+            : lightMode.screenBackgroundColors,
+        ]}>
+        <Text
+          style={[
+            generalInfoStyles.title4,
+            status ? darkMode.textColor : lightMode.textColor,
+          ]}>
+          125 Tele-Consultation has been done.
+        </Text>
+      </View>
+      <View
+        style={[
+          generalInfoStyles.container5,
+          status
+            ? darkMode.screenBackgroundColors
+            : lightMode.screenBackgroundColors,
+        ]}>
+        <Text
+          style={[
+            generalInfoStyles.title4,
+            status ? darkMode.textColor : lightMode.textColor,
+          ]}>
+          125 InPerson-Consultation has been done.
+        </Text>
+      </View>
     </View>
   );
 };
+export const dummtempData = [1, 2, 3, 4, 5, 6, 7, 8];
 
 const AboutSection = props => {
   const status = useSelector(state => state.otherReducer.status);
@@ -250,7 +234,7 @@ const AboutSection = props => {
             aboutSectionStyles.title1,
             status ? darkMode.textColor : lightMode.textColor,
           ]}>
-          About Dr. {props.name}
+          About Dr. {'props.name'}
         </Text>
       </View>
 
@@ -272,7 +256,7 @@ const AboutSection = props => {
               aboutSectionStyles.title3,
               status ? darkMode.textColor : lightMode.textColor,
             ]}>
-            Areas of Specializations of Dr. {props.name}
+            Areas of Specializations of Dr. {'props.name'}
           </Text>
           <Icon
             type="ionicon"
@@ -292,7 +276,8 @@ const AboutSection = props => {
                 ? darkMode.screenBackgroundColors
                 : lightMode.screenBackgroundColors,
             ]}>
-            {props.data?.aos?.map((content, id) => (
+            {/* {props.data?.aos?.map((content, id) => ( */}
+            {dummtempData.map((content, id) => (
               <Text
                 key={id}
                 style={[
@@ -300,7 +285,7 @@ const AboutSection = props => {
                   status ? darkMode.textColor : lightMode.textColor,
                 ]}>
                 ---> {'  '}
-                {content?.title}
+                {'content?.title'}
               </Text>
             ))}
           </View>
@@ -324,7 +309,7 @@ const AboutSection = props => {
               aboutSectionStyles.title3,
               status ? darkMode.textColor : lightMode.textColor,
             ]}>
-            Educations of Dr. {props.name}
+            Educations of Dr. {'props.name'}
           </Text>
           <Icon
             type="ionicon"
@@ -344,7 +329,8 @@ const AboutSection = props => {
                 ? darkMode.screenBackgroundColors
                 : lightMode.screenBackgroundColors,
             ]}>
-            {props.data?.educations?.map((content, id) => (
+            {/* {props.data?.educations?.map((content, id) => ( */}
+            {dummtempData.map((content, id) => (
               <Text
                 key={id}
                 style={[
@@ -352,7 +338,7 @@ const AboutSection = props => {
                   status ? darkMode.textColor : lightMode.textColor,
                 ]}>
                 ---> {'  '}
-                {content?.title}
+                {'content?.title'}
               </Text>
             ))}
           </View>
@@ -376,7 +362,7 @@ const AboutSection = props => {
               aboutSectionStyles.title3,
               status ? darkMode.textColor : lightMode.textColor,
             ]}>
-            Work Experiences of Dr. {props.name}
+            Work Experiences of Dr. {'props.name'}
           </Text>
           <Icon
             type="ionicon"
@@ -396,7 +382,8 @@ const AboutSection = props => {
                 ? darkMode.screenBackgroundColors
                 : lightMode.screenBackgroundColors,
             ]}>
-            {props.data?.we?.map((content, id) => (
+            {/* {props.data?.we?.map((content, id) => ( */}
+            {dummtempData.map((content, id) => (
               <Text
                 key={id}
                 style={[
@@ -404,7 +391,7 @@ const AboutSection = props => {
                   status ? darkMode.textColor : lightMode.textColor,
                 ]}>
                 ---> {'  '}
-                {content?.title}
+                {'content?.title'}
               </Text>
             ))}
           </View>
@@ -428,7 +415,7 @@ const AboutSection = props => {
               aboutSectionStyles.title3,
               status ? darkMode.textColor : lightMode.textColor,
             ]}>
-            Memberships of Dr. {props.name}
+            Memberships of Dr. {'props.name'}
           </Text>
           <Icon
             type="ionicon"
@@ -448,7 +435,8 @@ const AboutSection = props => {
                 ? darkMode.screenBackgroundColors
                 : lightMode.screenBackgroundColors,
             ]}>
-            {props.data?.memberships?.map((content, id) => (
+            {/* {props.data?.memberships?.map((content, id) => ( */}
+            {dummtempData.map((content, id) => (
               <Text
                 key={id}
                 style={[
@@ -456,7 +444,7 @@ const AboutSection = props => {
                   status ? darkMode.textColor : lightMode.textColor,
                 ]}>
                 ---> {'  '}
-                {content?.title}
+                {'content?.title'}
               </Text>
             ))}
           </View>
@@ -485,132 +473,122 @@ const ContactDetailsSection = props => {
           Contacts Details
         </Text>
       </View>
-      {props.loadingStatus.status === 2 ? (
-        <>
-          <View style={contactDetailsSectionStyles.container3}>
-            <View style={contactDetailsSectionStyles.container4}>
-              <Icon
-                type="material"
-                name="email"
-                color={
-                  status
-                    ? darkMode.tintColors.tintColor
-                    : lightMode.tintColors.tintColor
-                }
-              />
-            </View>
-            <View style={contactDetailsSectionStyles.container5}>
-              <Text
-                style={[
-                  contactDetailsSectionStyles.title2,
-                  status ? darkMode.textColor : lightMode.textColor,
-                ]}>
-                Email
-              </Text>
-              <Text
-                style={[
-                  contactDetailsSectionStyles.title3,
-                  status ? darkMode.textColor : lightMode.textColor,
-                ]}>
-                {props.data?.email}
-              </Text>
-            </View>
-          </View>
-          <View style={contactDetailsSectionStyles.container3}>
-            <View style={contactDetailsSectionStyles.container4}>
-              <Icon
-                type="material"
-                name="phone"
-                color={
-                  status
-                    ? darkMode.tintColors.tintColor
-                    : lightMode.tintColors.tintColor
-                }
-              />
-            </View>
-            <View style={contactDetailsSectionStyles.container5}>
-              <Text
-                style={[
-                  contactDetailsSectionStyles.title2,
-                  status ? darkMode.textColor : lightMode.textColor,
-                ]}>
-                Phone
-              </Text>
-              <Text
-                style={[
-                  contactDetailsSectionStyles.title3,
-                  status ? darkMode.textColor : lightMode.textColor,
-                ]}>
-                {props.data?.phone_number}
-              </Text>
-            </View>
-          </View>
-          <View style={contactDetailsSectionStyles.container3}>
-            <View style={contactDetailsSectionStyles.container4}>
-              <Icon
-                type="material"
-                name="link"
-                color={
-                  status
-                    ? darkMode.tintColors.tintColor
-                    : lightMode.tintColors.tintColor
-                }
-              />
-            </View>
-            <View style={contactDetailsSectionStyles.container5}>
-              <Text
-                style={[
-                  contactDetailsSectionStyles.title2,
-                  status ? darkMode.textColor : lightMode.textColor,
-                ]}>
-                Website
-              </Text>
-              <Text
-                style={[
-                  contactDetailsSectionStyles.title3,
-                  status ? darkMode.textColor : lightMode.textColor,
-                ]}>
-                {props.data?.website}
-              </Text>
-            </View>
-          </View>
-          <View style={contactDetailsSectionStyles.container3}>
-            <View style={contactDetailsSectionStyles.container4}>
-              <Icon
-                type="material-community"
-                name="hospital-marker"
-                color={
-                  status
-                    ? darkMode.tintColors.tintColor
-                    : lightMode.tintColors.tintColor
-                }
-              />
-            </View>
-            <View style={contactDetailsSectionStyles.container5}>
-              <Text
-                style={[
-                  contactDetailsSectionStyles.title2,
-                  status ? darkMode.textColor : lightMode.textColor,
-                ]}>
-                Clinic/Hospital Address
-              </Text>
-              <Text
-                style={[
-                  contactDetailsSectionStyles.title3,
-                  status ? darkMode.textColor : lightMode.textColor,
-                ]}>
-                {props.data?.address}
-              </Text>
-            </View>
-          </View>
-        </>
-      ) : (
-        <TextWithAnimatedDots_Loading
-          text="Loading"
-          loadingStatus={props.loadingStatus}
-          setloadingStatus={props.setloadingStatus}
-        />
-      )}
+      <View style={contactDetailsSectionStyles.container3}>
+        <View style={contactDetailsSectionStyles.container4}>
+          <Icon
+            type="material"
+            name="email"
+            color={
+              status
+                ? darkMode.tintColors.tintColor
+                : lightMode.tintColors.tintColor
+            }
+          />
+        </View>
+        <View style={contactDetailsSectionStyles.container5}>
+          <Text
+            style={[
+              contactDetailsSectionStyles.title2,
+              status ? darkMode.textColor : lightMode.textColor,
+            ]}>
+            Email
+          </Text>
+          <Text
+            style={[
+              contactDetailsSectionStyles.title3,
+              status ? darkMode.textColor : lightMode.textColor,
+            ]}>
+            {'props.data?.email'}
+          </Text>
+        </View>
+      </View>
+      <View style={contactDetailsSectionStyles.container3}>
+        <View style={contactDetailsSectionStyles.container4}>
+          <Icon
+            type="material"
+            name="phone"
+            color={
+              status
+                ? darkMode.tintColors.tintColor
+                : lightMode.tintColors.tintColor
+            }
+          />
+        </View>
+        <View style={contactDetailsSectionStyles.container5}>
+          <Text
+            style={[
+              contactDetailsSectionStyles.title2,
+              status ? darkMode.textColor : lightMode.textColor,
+            ]}>
+            Phone
+          </Text>
+          <Text
+            style={[
+              contactDetailsSectionStyles.title3,
+              status ? darkMode.textColor : lightMode.textColor,
+            ]}>
+            {'props.data?.phone_number'}
+          </Text>
+        </View>
+      </View>
+      <View style={contactDetailsSectionStyles.container3}>
+        <View style={contactDetailsSectionStyles.container4}>
+          <Icon
+            type="material"
+            name="link"
+            color={
+              status
+                ? darkMode.tintColors.tintColor
+                : lightMode.tintColors.tintColor
+            }
+          />
+        </View>
+        <View style={contactDetailsSectionStyles.container5}>
+          <Text
+            style={[
+              contactDetailsSectionStyles.title2,
+              status ? darkMode.textColor : lightMode.textColor,
+            ]}>
+            Website
+          </Text>
+          <Text
+            style={[
+              contactDetailsSectionStyles.title3,
+              status ? darkMode.textColor : lightMode.textColor,
+            ]}>
+            {'props.data?.website'}
+          </Text>
+        </View>
+      </View>
+      <View style={contactDetailsSectionStyles.container3}>
+        <View style={contactDetailsSectionStyles.container4}>
+          <Icon
+            type="material-community"
+            name="hospital-marker"
+            color={
+              status
+                ? darkMode.tintColors.tintColor
+                : lightMode.tintColors.tintColor
+            }
+          />
+        </View>
+        <View style={contactDetailsSectionStyles.container5}>
+          <Text
+            style={[
+              contactDetailsSectionStyles.title2,
+              status ? darkMode.textColor : lightMode.textColor,
+            ]}>
+            Clinic/Hospital Address
+          </Text>
+          <Text
+            style={[
+              contactDetailsSectionStyles.title3,
+              status ? darkMode.textColor : lightMode.textColor,
+            ]}>
+            {'props.data?.address'}
+          </Text>
+        </View>
+      </View>
     </View>
   );
 };

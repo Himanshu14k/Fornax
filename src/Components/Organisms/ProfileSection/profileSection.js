@@ -28,10 +28,14 @@ const ProfileSectionComponent1 = props => {
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles1.container2}
-          onPress={() => onPicClick(props.data?.coverPic)}>
+          // onPress={() => onPicClick(props.data?.coverPic)}>
+          onPress={() =>
+            onPicClick(require('../../../Assets/Images/doc.jpeg'))
+          }>
           <Image
             style={styles1.cover}
-            source={{uri: props.data?.coverPic}}
+            // source={{uri: props.data?.coverPic}}
+            source={require('../../../Assets/Images/doc.jpeg')}
           />
         </TouchableOpacity>
       </View>
@@ -49,7 +53,7 @@ const ProfileSectionComponent1 = props => {
               styles1.title1,
               status ? darkMode.textColor : lightMode.textColor,
             ]}>
-            {props.name}
+            {'props.name'}
           </Text>
         </View>
         <View
@@ -59,7 +63,7 @@ const ProfileSectionComponent1 = props => {
               ? darkMode.screenBackgroundColors
               : lightMode.screenBackgroundColors,
           ]}>
-          {props.data?.status === 1 ? (
+          {props.data?.status !== 1 ? (
             <Image
               style={styles1.image3}
               source={require('../../../Assets/Icons/processing.png')}
@@ -85,21 +89,17 @@ const ProfileSectionComponent1 = props => {
       </View>
       <TouchableOpacity
         style={[
-          props.profilePicSquare
-            ? styles1.container7
-            : styles1.container6,
+          props.profilePicSquare ? styles1.container7 : styles1.container6,
           status
             ? darkMode.screenBackgroundColors
             : lightMode.screenBackgroundColors,
         ]}
-        onPress={() => onPicClick(props.data?.profilePic)}>
+        // onPress={() => onPicClick(props.data?.profilePic)}>
+        onPress={() => onPicClick(require('../../../Assets/Images/doc.jpeg'))}>
         <Image
-          style={
-            props.profilePicSquare
-              ? styles1.image2
-              : styles1.image1
-          }
-          source={{uri: props.data?.profilePic}}
+          style={props.profilePicSquare ? styles1.image2 : styles1.image1}
+          // source={{uri: props.data?.profilePic}}
+          source={require('../../../Assets/Images/doc.jpeg')}
         />
       </TouchableOpacity>
       <ViewPicModal

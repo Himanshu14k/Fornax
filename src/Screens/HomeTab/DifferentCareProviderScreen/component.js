@@ -5,7 +5,6 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
-  SafeAreaView,
   TextInput,
   RefreshControl,
   Image,
@@ -13,102 +12,9 @@ import {
 import {Icon} from '@rneui/themed';
 import {adjustedFontSize, widthToDp} from '../../../Utils/dimensionsInPixel';
 import {darkMode, lightMode} from '../../../Utils/Colors';
-import CustomHeader from '../../../Components/Molecules/CustomHeader/CustomHeader';
 import {styles1, styles2} from './styles';
-import SimpleToast from 'react-native-simple-toast';
-import axios from 'axios';
-import {CustomLoading2} from '../../../Components/Molecules/CustomLoadings/customLoading';
-
-const DifferentCareProviderScreen = props => {
-  const status = useSelector(state => state.otherReducer.status);
-  const [data, setData] = useState([]);
-  const [loadingStatus, setloadingStatus] = useState({status: 1, msg: ''});
-  const [refreshing, setRefreshing] = useState(false);
-
-  const fetchdata = isRefreshing => {
-    try {
-      isRefreshing && setRefreshing(true);
-      SimpleToast.show((message = 'Loading...'), (duration = 5000));
-      setloadingStatus({status: 1, msg: 'Loading...'});
-      axios
-        .get('https://fornaxbackend.onrender.com/pd/getAll', {
-          params: {
-            id: props?.route?.params?.id,
-          },
-        })
-        .then(response => {
-          isRefreshing && setRefreshing(false);
-          if (response.data.status === 'success') {
-            setData(response.data.data);
-            setloadingStatus({status: 2, msg: 'Completed'});
-          } else {
-            setloadingStatus({
-              status: 2,
-              msg: 'No ' + props.route.params.title + ' Found.',
-            });
-            SimpleToast.show(
-              (message = 'No ' + props.route.params.title + ' Found.'),
-              (duration = 3000),
-            );
-          }
-        })
-        .catch(error => {
-          isRefreshing && setRefreshing(false);
-          setloadingStatus({
-            status: 3,
-            msg: 'No ' + props.route.params.title + ' Found.',
-          });
-          console.log('Axios error (fetchData)', error);
-        });
-    } catch (error) {
-      isRefreshing && setRefreshing(false);
-      console.log('Uexpected error occured during CS list data fetching.');
-      console.log('Error is (fetchData): ', error);
-      setloadingStatus({
-        status: 3,
-        msg: 'No ' + props.route.params.title + ' Found.',
-      });
-    }
-  };
-
-  useEffect(() => {
-    fetchdata(false);
-    return;
-  }, []);
-
-  const onRefresh = useCallback(() => {
-    fetchdata(true);
-  }, []);
-
-  return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: status
-          ? darkMode.screenBackgroundColors.backgroundColor
-          : lightMode.screenBackgroundColors.backgroundColor,
-      }}>
-      <CustomHeader
-        headerTitle={props.route.params.title}
-        navigation={props.navigation}
-      />
-      {loadingStatus.status === 2 ? (
-        <ProviderListComponent
-          data={data}
-          title={props.route.params.title}
-          navigation={props.navigation}
-          onRefresh={onRefresh}
-          refreshing={refreshing}
-        />
-      ) : (
-        <CustomLoading2
-          loadingStatus={loadingStatus}
-          setloadingStatus={setloadingStatus}
-        />
-      )}
-    </View>
-  );
-};
+import {dummtempData} from '../../../Components/Organisms/ServiceProviderDetails/ServiceProviderDetailsComponent';
+import { navigate } from '../../../Navigations/navigationServices';
 
 const ProviderListComponent = props => {
   const status = useSelector(state => state.otherReducer.status);
@@ -126,7 +32,8 @@ const ProviderListComponent = props => {
           ? darkMode.screenBackgroundColors
           : lightMode.screenBackgroundColors,
       ]}>
-      {props.data.length > 0 ? (
+      {/* {props.data.length > 0 ? ( */}
+      {dummtempData.length > 0 ? (
         <>
           <View
             style={[
@@ -209,7 +116,8 @@ const ProviderListComponent = props => {
                 ? darkMode.containerbackgroundColor
                 : lightMode.containerbackgroundColor,
             ]}
-            data={props?.data}
+            // data={props?.data}
+            data={dummtempData}
             renderItem={({item, id}) => (
               <ProviderComponent
                 navigation={props.navigation}
@@ -246,15 +154,17 @@ const ProviderComponent = props => {
       activeOpacity={0.7}
       style={styles2.container1}
       onPress={() =>
-        props.navigation.navigate('diffCaringSPDetails', {
-          id: props.item.ref.authID,
-          name: props.item.general_Info.name,
-        })
+        // props.navigation.navigate('diffCaringSPDetails', {
+        //   id: props.item.ref.authID,
+        //   name: props.item.general_Info.name,
+        // })
+        navigate('diffCaringSPDetails')
       }>
       <View style={styles2.container2}>
         <Image
           style={styles2.image1}
-          source={{uri: props.item.general_Info.profilePic}}
+        //   source={{uri: props.item.general_Info.profilePic}}
+          source={require('../../../Assets/Images/doc.jpeg')}
         />
       </View>
       <View
@@ -271,7 +181,7 @@ const ProviderComponent = props => {
               styles2.title2,
               status ? darkMode.textColor : lightMode.textColor,
             ]}>
-            {props.item.general_Info.name}
+            {'props.item.general_Info.name'}
           </Text>
           <Text
             numberOfLines={1}
@@ -279,7 +189,7 @@ const ProviderComponent = props => {
               styles2.title3,
               status ? darkMode.textColor : lightMode.textColor,
             ]}>
-            {props.item.professional_Info.role}
+            {'props.item.professional_Info.role'}
           </Text>
         </View>
         <TouchableOpacity style={styles2.btn1}>
@@ -292,4 +202,4 @@ const ProviderComponent = props => {
   );
 };
 
-export default DifferentCareProviderScreen;
+export {ProviderListComponent};

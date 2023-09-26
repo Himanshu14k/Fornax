@@ -24,6 +24,7 @@ import {
 import {FloatingBtnSection} from '../../../Components/Molecules/FloatingBtn/floatingBtnSection';
 import MultiSelectDropDownMenuComponent from '../../../Components/Molecules/MultiSelectDropDownMenu/multiSelectDropDownMenu';
 import {styles1, styles2, styles3} from './styles';
+import { dummtempData } from '../../../Components/Organisms/ServiceProviderDetails/ServiceProviderDetailsComponent';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -106,11 +107,11 @@ const DiffCaringSPDetailsScreen = props => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-    fetchUserData();
-    return;
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  //   fetchUserData();
+  //   return;
+  // }, []);
 
   const reset = () => {
     setDay('');
@@ -940,38 +941,29 @@ const PatientCareServiceComponent = props => {
           styles2.headerTitle,
           status ? darkMode.textColor : lightMode.textColor,
         ]}>
-        Service offered by {props.name}
+        Service offered by {'props.name'}
       </Text>
-      {props.loadingStatus.status === 2 ? (
-        props?.data?.map((item, id) => (
-          <View
-            key={id}
+      {/* {props?.data?.map((item, id) => ( */}
+      {dummtempData.map((item, id) => (
+        <View
+          key={id}
+          style={[
+            styles2.container2,
+            {
+              borderBottomColor: status
+                ? darkMode.screenBackgroundColors.backgroundColor
+                : lightMode.screenBackgroundColors.backgroundColor,
+            },
+          ]}>
+          <Text
             style={[
-              styles2.container2,
-              {
-                borderBottomColor: status
-                  ? darkMode.screenBackgroundColors.backgroundColor
-                  : lightMode.screenBackgroundColors.backgroundColor,
-              },
+              styles2.title1,
+              status ? darkMode.textColor : lightMode.textColor,
             ]}>
-            <Text
-              style={[
-                styles2.title1,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              ---> {'  ' + item.title}
-            </Text>
-          </View>
-        ))
-      ) : (
-        <View style={{flex: 1, paddingVertical: widthToDp(5)}}>
-          <TextWithAnimatedDots_Loading
-            text="Loading"
-            loadingStatus={props.loadingStatus}
-            setloadingStatus={props.setloadingStatus}
-          />
+            ---> {'  ' + 'item.title'}
+          </Text>
         </View>
-      )}
+      ))}
     </View>
   );
 };
@@ -992,153 +984,141 @@ const GeneralAndProfessionalDetailsComponent = props => {
           styles1.headerTitle,
           status ? darkMode.textColor : lightMode.textColor,
         ]}>
-        General Details of {props.name}
+        General Details of {'props.name'}
       </Text>
-      {props.loadingStatus.status === 2 ? (
-        <>
-          <View
-            style={[
-              styles1.container2,
-              {
-                borderBottomColor: status
-                  ? darkMode.screenBackgroundColors.backgroundColor
-                  : lightMode.screenBackgroundColors.backgroundColor,
-              },
-            ]}>
-            <Text
-              style={[
-                styles1.title1,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              Name
-            </Text>
-            <Text
-              style={[
-                styles1.title2,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              {props?.data?.general_Info?.name}
-            </Text>
-          </View>
-          <View
-            style={[
-              styles1.container2,
-              {
-                borderBottomColor: status
-                  ? darkMode.screenBackgroundColors.backgroundColor
-                  : lightMode.screenBackgroundColors.backgroundColor,
-              },
-            ]}>
-            <Text
-              style={[
-                styles1.title1,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              Educations
-            </Text>
-            <Text
-              style={[
-                styles1.title2,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              {props?.data?.professional_Info?.educations?.length <= 0
-                ? 'None'
-                : props?.data?.professional_Info?.educations?.map(
-                    (item, id) => {
-                      return item.title;
-                    },
-                  )}
-            </Text>
-          </View>
-          <View
-            style={[
-              styles1.container2,
-              {
-                borderBottomColor: status
-                  ? darkMode.screenBackgroundColors.backgroundColor
-                  : lightMode.screenBackgroundColors.backgroundColor,
-              },
-            ]}>
-            <Text
-              style={[
-                styles1.title1,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              Experiences
-            </Text>
-            <Text
-              style={[
-                styles1.title2,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              {props?.data?.professional_Info?.we?.length <= 0
-                ? 'None'
-                : props?.data?.professional_Info?.we?.map((item, id) => {
-                    return item.title;
-                  })}
-            </Text>
-          </View>
-          <View
-            style={[
-              styles1.container2,
-              {
-                borderBottomColor: status
-                  ? darkMode.screenBackgroundColors.backgroundColor
-                  : lightMode.screenBackgroundColors.backgroundColor,
-              },
-            ]}>
-            <Text
-              style={[
-                styles1.title1,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              Working hours
-            </Text>
-            <Text
-              style={[
-                styles1.title2,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              {props?.data?.professional_Info?.nightShift === true
-                ? 24 + ' hours'
-                : '06:00 AM - 07:00 PM'}
-            </Text>
-          </View>
-          <View
-            style={[
-              styles1.container2,
-              {
-                borderBottomColor: status
-                  ? darkMode.screenBackgroundColors.backgroundColor
-                  : lightMode.screenBackgroundColors.backgroundColor,
-              },
-            ]}>
-            <Text
-              style={[
-                styles1.title1,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              Fees
-            </Text>
-            <Text
-              style={[
-                styles1.title2,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              06:00 AM - 07:00 PM {'   '}--->{' '}
-              {'   ' + props?.data?.professional_Info?.dayShiftFees}/hr {'\n\n'}
-              10:00 PM - 06:00 AM{'   '} --->{' '}
-              {'   ' + props?.data?.professional_Info?.nightShiftFees}/hr{' '}
-            </Text>
-          </View>
-        </>
-      ) : (
-        <TextWithAnimatedDots_Loading
-          text="Loading"
-          loadingStatus={props.loadingStatus}
-          setloadingStatus={props.setloadingStatus}
-        />
-      )}
+      <View
+        style={[
+          styles1.container2,
+          {
+            borderBottomColor: status
+              ? darkMode.screenBackgroundColors.backgroundColor
+              : lightMode.screenBackgroundColors.backgroundColor,
+          },
+        ]}>
+        <Text
+          style={[
+            styles1.title1,
+            status ? darkMode.textColor : lightMode.textColor,
+          ]}>
+          Name
+        </Text>
+        <Text
+          style={[
+            styles1.title2,
+            status ? darkMode.textColor : lightMode.textColor,
+          ]}>
+          {'props?.data?.general_Info?.name'}
+        </Text>
+      </View>
+      <View
+        style={[
+          styles1.container2,
+          {
+            borderBottomColor: status
+              ? darkMode.screenBackgroundColors.backgroundColor
+              : lightMode.screenBackgroundColors.backgroundColor,
+          },
+        ]}>
+        <Text
+          style={[
+            styles1.title1,
+            status ? darkMode.textColor : lightMode.textColor,
+          ]}>
+          Educations
+        </Text>
+        <Text
+          style={[
+            styles1.title2,
+            status ? darkMode.textColor : lightMode.textColor,
+          ]}>
+          {props?.data?.professional_Info?.educations?.length <= 0
+            ? 'None'
+            : props?.data?.professional_Info?.educations?.map((item, id) => {
+                return item.title;
+              })}
+        </Text>
+      </View>
+      <View
+        style={[
+          styles1.container2,
+          {
+            borderBottomColor: status
+              ? darkMode.screenBackgroundColors.backgroundColor
+              : lightMode.screenBackgroundColors.backgroundColor,
+          },
+        ]}>
+        <Text
+          style={[
+            styles1.title1,
+            status ? darkMode.textColor : lightMode.textColor,
+          ]}>
+          Experiences
+        </Text>
+        <Text
+          style={[
+            styles1.title2,
+            status ? darkMode.textColor : lightMode.textColor,
+          ]}>
+          {props?.data?.professional_Info?.we?.length <= 0
+            ? 'None'
+            : props?.data?.professional_Info?.we?.map((item, id) => {
+                return item.title;
+              })}
+        </Text>
+      </View>
+      <View
+        style={[
+          styles1.container2,
+          {
+            borderBottomColor: status
+              ? darkMode.screenBackgroundColors.backgroundColor
+              : lightMode.screenBackgroundColors.backgroundColor,
+          },
+        ]}>
+        <Text
+          style={[
+            styles1.title1,
+            status ? darkMode.textColor : lightMode.textColor,
+          ]}>
+          Working hours
+        </Text>
+        <Text
+          style={[
+            styles1.title2,
+            status ? darkMode.textColor : lightMode.textColor,
+          ]}>
+          {props?.data?.professional_Info?.nightShift === true
+            ? 24 + ' hours'
+            : '06:00 AM - 07:00 PM'}
+        </Text>
+      </View>
+      <View
+        style={[
+          styles1.container2,
+          {
+            borderBottomColor: status
+              ? darkMode.screenBackgroundColors.backgroundColor
+              : lightMode.screenBackgroundColors.backgroundColor,
+          },
+        ]}>
+        <Text
+          style={[
+            styles1.title1,
+            status ? darkMode.textColor : lightMode.textColor,
+          ]}>
+          Fees
+        </Text>
+        <Text
+          style={[
+            styles1.title2,
+            status ? darkMode.textColor : lightMode.textColor,
+          ]}>
+          06:00 AM - 07:00 PM {'   '}--->{' '}
+          {'   ' + props?.data?.professional_Info?.dayShiftFees}/hr {'\n\n'}
+          10:00 PM - 06:00 AM{'   '} --->{' '}
+          {'   ' + props?.data?.professional_Info?.nightShiftFees}/hr{' '}
+        </Text>
+      </View>
     </View>
   );
 };
