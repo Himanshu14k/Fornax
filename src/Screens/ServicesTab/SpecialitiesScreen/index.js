@@ -8,6 +8,7 @@ import {specialitiesState} from '../../../Constants/allStates';
 import SwiperComponent from '../../../Components/Molecules/Swiper/swiper';
 import {darkMode, lightMode} from '../../../Constants/themeColors';
 import {SpecialitiesSectionComponent} from './component';
+import { docSpecialitiesData } from '../../../Constants/screenData';
 
 const SpecialitiesScreen = props => {
   const status = useSelector(state => state.otherReducer.status);
@@ -45,9 +46,9 @@ const SpecialitiesScreen = props => {
     }
   };
 
-  useEffect(() => {
-    fetchdata();
-  }, []);
+  // useEffect(() => {
+  //   fetchdata();
+  // }, []);
 
   return (
     <SafeAreaView
@@ -63,13 +64,10 @@ const SpecialitiesScreen = props => {
         contentContainerStyle={{flexGrow: 1}}>
         <SwiperComponent State={specialitiesState} />
         <SpecialitiesSectionComponent
-          navigation={props.navigation}
           headerTitle="Specialities (Physions & Surgeons)"
           nextRoute={'doctorList'}
           preRN="Doctors"
-          loadingStatus={loadingStatus}
-          setloadingStatus={setloadingStatus}
-          specialitiesState={specialitiesState}
+          data={docSpecialitiesData}
         />
       </ScrollView>
     </SafeAreaView>

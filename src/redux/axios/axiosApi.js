@@ -9,6 +9,7 @@ let header2 = {
   'Content-Type': 'application/json',
 };
 
+// Auth Api
 export const loginApi = data => Method.POST('user/login', data, header2);
 export const signUpApi = data => Method.POST('user/signUp', data, header2);
 export const confirmSignUpOtpApi = data =>
@@ -21,3 +22,9 @@ export const newPasswordApi = data =>
   Method.POST('user/resetNewPassword', data, header2);
 export const getCommunityGuidelinesApi = data =>
   Method.GET('Miscellaneous/GetCommunityGuideLine', data, header2);
+
+//Service Api
+export const getDocsListApi = params =>
+  Method.GET('pd/listDocs', params, header2);
+export const getTherapistListApi = params =>
+  Method.GET('pd/listTherapist', params, header2);

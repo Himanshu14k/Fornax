@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {SafeAreaView} from 'react-native';
 import axios from 'axios';
 import SimpleToast from 'react-native-simple-toast';
@@ -8,11 +8,19 @@ import {darkMode, lightMode} from '../../../Constants/themeColors';
 import CustomHeader from '../../../Components/Molecules/CustomHeader/CustomHeader';
 import {adjustedFontSize, widthToDp} from '../../../Utils/dimensionsInPixel';
 import {ListOfDoctorsComponent} from './components';
+import {
+  getDocsListAction,
+  getTherapistListAction,
+} from '../../../redux/actions/serviceActions';
 
 const Tab = createMaterialTopTabNavigator();
 
-const DoctorListScreen = props => {
+const DoctorListScreen = ({route}) => {
+  const dispatch = useDispatch();
   const status = useSelector(state => state.otherReducer.status);
+  const {doctorList, therapistList} = useSelector(
+    state => state.servicesReducer,
+  );
   const [typingStatus, setTypingStatus] = useState(false);
   const [data1, setdata1] = useState([]);
   const [data2, setdata2] = useState([]);
@@ -117,13 +125,24 @@ const DoctorListScreen = props => {
       setloadingStatus3({status: 3, msg: 'Therapist Not Found.'});
     }
   };
-
+  console.log('docLis', doctorList, route?.params?.sId);
   useEffect(() => {
-    if (props?.route?.params?.prevRouteName === 'Doctors') {
-      fetchPhyscian();
-      fetchSurgeon();
+    if (route?.params?.prevRouteName === 'Doctors') {
+      dispatch(
+        getDocsListAction({
+          id: route?.params?.sId,
+          offset: 0,
+          limit: 10,
+        }),
+      );
     } else {
-      fetchTherapist();
+      dispatch(
+        getTherapistListAction({
+          id: route?.params?.sId,
+          offset: 0,
+          limit: 10,
+        }),
+      );
     }
   }, []);
 
@@ -136,13 +155,12 @@ const DoctorListScreen = props => {
           : lightMode.screenBackgroundColors.backgroundColor,
       }}>
       <CustomHeader
-        navigation={props.navigation}
-        headerTitle={props?.route?.params?.prevRouteName}
+        headerTitle={route?.params?.prevRouteName}
         searchIcon
         typingStatus={typingStatus}
         setTypingStatus={setTypingStatus}
       />
-      {props?.route?.params?.prevRouteName === 'Doctors' ? (
+      {route?.params?.prevRouteName === 'Doctors' ? (
         <Tab.Navigator
           screenOptions={{
             tabBarLabelStyle: {
@@ -165,12 +183,9 @@ const DoctorListScreen = props => {
             name="Physicians"
             children={() => (
               <ListOfDoctorsComponent
-                data={data1}
-                loadingStatus={loadingStatus1}
-                setloadingStatus={setloadingStatus2}
+                data={doctorList?.physicians}
                 sortingModalStatus={sortingModalStatus}
                 setsortingModalStatus={setsortingModalStatus}
-                navigation={props.navigation}
                 prevRouteName="Doctor"
               />
             )}
@@ -179,12 +194,11 @@ const DoctorListScreen = props => {
             name="Surgeon"
             children={() => (
               <ListOfDoctorsComponent
-                data={data2}
+                data={doctorList?.surgeon}
                 loadingStatus={loadingStatus2}
                 setloadingStatus={setloadingStatus2}
                 sortingModalStatus={sortingModalStatus}
                 setsortingModalStatus={setsortingModalStatus}
-                navigation={props.navigation}
                 prevRouteName="Doctor"
               />
             )}
@@ -206,7 +220,6 @@ const DoctorListScreen = props => {
           setloadingStatus={setloadingStatus3}
           sortingModalStatus={sortingModalStatus}
           setsortingModalStatus={setsortingModalStatus}
-          navigation={props.navigation}
           prevRouteName="Therapist"
         />
       )}

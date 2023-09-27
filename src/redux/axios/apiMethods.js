@@ -165,9 +165,10 @@ export const Method = {
         }
       });
   },
-  GET(url, header) {
+  GET(url, params, header) {
     return APIKit.get(url, {
       headers: header,
+      params: params,
     })
       .then(async data => {
         if (data) {

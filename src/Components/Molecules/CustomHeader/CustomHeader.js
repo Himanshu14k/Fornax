@@ -7,18 +7,20 @@ import CustomTextInput from '../../Atoms/TextInput/customTextInput';
 import {heightToDp, widthToDp} from '../../../Utils/dimensionsInPixel';
 import {darkMode, lightMode} from '../../../Utils/Colors';
 import Spacer from '../../Atoms/Spacer';
+import {goBack} from '../../../Navigations/navigationServices';
+import {useNavigation} from '@react-navigation/native';
 
 const CustomHeader = ({
   isHome,
   headerTitle = '',
   msgAndNotification,
-  navigation = {},
   searchIcon,
   typingStatus = false,
   setTypingStatus = () => {},
 }) => {
   const status = useSelector(state => state.otherReducer.status);
   const [searchItem, setsearchItem] = useState('');
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -34,7 +36,7 @@ const CustomHeader = ({
           <TouchableOpacity
             activeOpacity={0.7}
             style={styles.btn1}
-            onPress={() => navigation.goBack()}>
+            onPress={() => goBack()}>
             <Icon type="antdesign" name="arrowleft" size={widthToDp(6)} />
           </TouchableOpacity>
         )}

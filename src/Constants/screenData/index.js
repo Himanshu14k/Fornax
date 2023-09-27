@@ -1,4 +1,4 @@
-const specialitiesData = [
+const docSpecialitiesData = [
   {
     _id: 'b07d51d26b76438aa8c0e2f6bf8afa8a',
     title: 'Cardiology',
@@ -126,4 +126,19 @@ const specialitiesData = [
   },
 ];
 
-export {specialitiesData};
+const therapistSpecialitiesData = [
+  {
+    title: 'Mental Health',
+    _id: '6f988d092d7947dea5fabe3afde6aa6c',
+    image:
+      'https://specialization-doctor.s3.ap-south-1.amazonaws.com/cardiologist.png',
+  },
+  {
+    title: 'Physiotherapist',
+    _id: 'ae28db254ee644f2bcb386756f806693',
+    image:
+      'https://specialization-doctor.s3.ap-south-1.amazonaws.com/cardiologist.png',
+  },
+];
+
+export {docSpecialitiesData, therapistSpecialitiesData};
