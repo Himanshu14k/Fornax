@@ -27,88 +27,6 @@ const AllAppoinmentsScreen = props => {
   const [data2, setdata2] = useState([]);
   const [loadingStatus, setloadingStatus] = useState({status: 1, msg: ''});
 
-  const isFocused = useIsFocused();
-  const fetchData1 = async () => {
-    try {
-      axios
-        .get('https://fornaxbackend.onrender.com/uBA/getAllBA', {
-          params: {
-            id: uId,
-          },
-        })
-        .then(response => {
-          if (response.data.status === 'success') {
-            if (response.data.code === 200) {
-              setdata1(response.data.data);
-              setloadingStatus({status: 2, msg: 'Fetched Successfully.'});
-            } else {
-              setdata1([]);
-              setloadingStatus({status: 2, msg: 'Fetched Successfully.'});
-            }
-          } else {
-            setloadingStatus({status: 3, msg: 'Internet Connection Lost.'});
-          }
-        })
-        .catch(error => {
-          setloadingStatus({status: 3, msg: 'Internet Connection Lost.'});
-          console.log('Axios error (fetchData1)', error);
-        });
-    } catch (error) {
-      console.log(
-        'Uexpected error occured during all upcoming and ongoing appointment data fetching.',
-      );
-      console.log('Error is (fetchData1): ', error);
-      setloadingStatus({status: 3, msg: 'Internet Connection Lost.'});
-    }
-  };
-
-  const fetchData2 = async () => {
-    try {
-      axios
-        .get('https://fornaxbackend.onrender.com/uCC/getAllCC', {
-          params: {
-            id: uId,
-          },
-        })
-        .then(response => {
-          if (response.data.status === 'success') {
-            if (response.data.code === 200) {
-              setdata2(response.data.data);
-              setloadingStatus({status: 2, msg: 'Fetched Successfully.'});
-            } else {
-              setdata2([]);
-              setloadingStatus({status: 2, msg: 'Fetched Successfully.'});
-            }
-          } else {
-            setloadingStatus({status: 3, msg: 'Internet Connection Lost.'});
-          }
-        })
-        .catch(error => {
-          setloadingStatus({status: 3, msg: 'Internet Connection Lost.'});
-          console.log('Axios error (fetchData)', error);
-        });
-    } catch (error) {
-      console.log(
-        'Uexpected error occured during user all completed or canceled appointmnet and sessions data fetching.',
-      );
-      console.log('Error is (fetchData2): ', error);
-      setloadingStatus({status: 3, msg: 'Internet Connection Lost.'});
-    }
-  };
-
-  useEffect(() => {
-    isFocused && fetchData1();
-    isFocused && fetchData2();
-  }, [isFocused]);
-
-  const onReload1 = () => {
-    isFocused && fetchData1();
-  };
-
-  const onReload2 = () => {
-    isFocused && fetchData2();
-  };
-
   return (
     <View
       style={{
@@ -149,13 +67,24 @@ const AllAppoinmentsScreen = props => {
           }}
           initialRouteName="Details">
           <Tab.Screen
+            name="On-Going"
+            children={() => (
+              <AppointmentListComponent
+                navigation={props.navigation}
+                data={data1}
+                loadingStatus={loadingStatus}
+                // onReload={onReload1}
+              />
+            )}
+          />
+          <Tab.Screen
             name="Upcoming"
             children={() => (
               <AppointmentListComponent
                 navigation={props.navigation}
                 data={data1}
                 loadingStatus={loadingStatus}
-                onReload={onReload1}
+                // onReload={onReload1}
               />
             )}
           />
@@ -166,7 +95,7 @@ const AllAppoinmentsScreen = props => {
                 navigation={props.navigation}
                 data={data2}
                 loadingStatus={loadingStatus}
-                onReload={onReload2}
+                // onReload={onReload2}
                 searchField
               />
             )}
@@ -624,42 +553,13 @@ const AppointmentListComponent = props => {
           ? darkMode.screenBackgroundColors
           : lightMode.screenBackgroundColors,
       ]}>
-      {props.loadingStatus.status === 2 ? (
-        props.data?.length > 0 ? (
-          <>
-            <FlatList
-              data={props?.data}
-              renderItem={renderCardComponent}
-              showsVerticalScrollIndicator={false}
-              contentContainerStyle={styles.container4}
-              ItemSeparatorComponent={() => <View style={styles.seprator} />}
-            />
-          </>
-        ) : (
-          <View style={styles.container12}>
-            <View
-              style={[
-                styles.container13,
-                status
-                  ? darkMode.containerbackgroundColor
-                  : lightMode.containerbackgroundColor,
-              ]}>
-              <Text
-                style={[
-                  styles.title3,
-                  status ? darkMode.textColor : lightMode.textColor,
-                ]}>
-                No Data Available
-              </Text>
-            </View>
-          </View>
-        )
-      ) : (
-        <CustomLoading2
-          loadingStatus={props.loadingStatus}
-          setloadingStatus={props.onReload}
-        />
-      )}
+      <FlatList
+        data={[1, 1, 1, 1, 1, 1, 1, 1]}
+        renderItem={renderCardComponent}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.container4}
+        ItemSeparatorComponent={() => <View style={styles.seprator} />}
+      />
     </View>
   );
 };

@@ -7,16 +7,15 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {darkMode, lightMode} from '../Utils/Colors';
 import {adjustedFontSize, widthToDp} from '../Utils/dimensionsInPixel';
 import {IMAGE} from '../Images/Image';
-import ProfileScreen from '../Screens/ProfileTab/ProfileScreen/profileScreen';
-import PaymentDetailScreen from '../Screens/ProfileTab/PaymentDetailsScreen/paymentDetailScreen';
-import AllAppoinmentsScreen from '../Screens/HistoryTab/AllAppoinmentsScreen/allAppoinmentsScreen';
+import ProfileScreen from '../Screens/ProfileTab/ProfileScreen';
+import PaymentDetailScreen from '../Screens/ProfileTab/PaymentDetailsScreen';
+import AllAppoinmentsScreen from '../Screens/HistoryTab/AllAppoinmentsScreen';
 import NotificationScreen from '../Screens/NotificationTab/NotificationScreen/NotificationScreen';
 import HomeScreen from '../Screens/HomeTab/HomeScreen';
 import DifferentCareProviderScreen from '../Screens/HomeTab/DifferentCareProviderScreen';
 import DiffCaringSPDetailsScreen from '../Screens/HomeTab/DiffCaringSPDetailsScreen';
 import ServicesScreen from '../Screens/ServicesTab/ServicesScreen';
 import SpecialitiesScreen from '../Screens/ServicesTab/SpecialitiesScreen';
-import DoctorListScreen from '../Screens/ServicesTab/DoctorListScreen';
 import DoctorProfileScreen from '../Screens/ServicesTab/DoctorProfileScreen';
 import ViewAllSlotsScreen from '../Screens/ServicesTab/ViewAllSlotsScreen';
 
@@ -73,16 +72,6 @@ const HomeStack = props => {
         component={HomeScreen}
         options={{headerShown: false}}
       />
-      <homeStack.Screen
-        name="differentCareProvider"
-        component={DifferentCareProviderScreen}
-        options={{headerShown: false}}
-      />
-      <homeStack.Screen
-        name="diffCaringSPDetails"
-        component={DiffCaringSPDetailsScreen}
-        options={{headerShown: false}}
-      />
     </homeStack.Navigator>
   );
 };
@@ -94,36 +83,6 @@ const ServiceStack = props => {
       <serviceStack.Screen
         name="serviceScreen"
         component={ServicesScreen}
-        options={{headerShown: false}}
-      />
-      <serviceStack.Screen
-        name="specialities"
-        component={SpecialitiesScreen}
-        options={{headerShown: false}}
-      />
-      <serviceStack.Screen
-        name="doctorList"
-        component={DoctorListScreen}
-        options={{headerShown: false}}
-      />
-      <serviceStack.Screen
-        name="doctorProfile"
-        component={DoctorProfileScreen}
-        options={{headerShown: false}}
-      />
-      <serviceStack.Screen
-        name="viewAllSlots"
-        component={ViewAllSlotsScreen}
-        options={{headerShown: false}}
-      />
-      <serviceStack.Screen
-        name="differentCareProvider"
-        component={DifferentCareProviderScreen}
-        options={{headerShown: false}}
-      />
-      <serviceStack.Screen
-        name="diffCaringSPDetails"
-        component={DiffCaringSPDetailsScreen}
         options={{headerShown: false}}
       />
     </serviceStack.Navigator>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, SafeAreaView} from 'react-native';
+import {ScrollView, SafeAreaView, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {homeState} from '../../../Constants/allStates';
 import CustomHeader from '../../../Components/Molecules/CustomHeader/CustomHeader';
@@ -33,7 +33,7 @@ const HomeScreen = props => {
   };
 
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -55,7 +55,7 @@ const HomeScreen = props => {
         />
         <SlideableContentComponent4 />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 

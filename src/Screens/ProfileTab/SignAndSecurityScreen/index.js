@@ -27,7 +27,6 @@ const SignAndSecurityScreen = props => {
   const status = useSelector(state => state.otherReducer.status);
   const [settingsModalStatus, setSettingsModalStatus] = useState(false);
   const [modalID, setmodalID] = useState('');
-  const spId = useSelector(state => state.authStatusR.spId);
   const [loadingStatus1, setloadingStatus1] = useState({
     status: 2,
     msg: '',
@@ -35,109 +34,6 @@ const SignAndSecurityScreen = props => {
   const [password, setpassword] = useState('');
   const [newPassword, setnewPassword] = useState('');
   const [confirmNewPassword, setconfirmNewPassword] = useState('');
-
-  const insertData = async () => {
-    try {
-      setloadingStatus1({status: 1, msg: 'Canceling...'});
-      axios
-        .post('https://fornaxbackend.onrender.com/sp/changePassword', {
-          id: spId,
-          old_password: password,
-          password: newPassword,
-          confirm_password: confirmNewPassword,
-        })
-        .then(response => {
-          if (response.data.status === 'success') {
-            setloadingStatus1({
-              status: 2,
-              msg: 'Appointment Canceled Successfully.',
-            });
-            Alert.alert(
-              'Success !!',
-              'Password Changed Successfully.',
-              [
-                {
-                  text: 'Ok',
-                  onPress: () => afterSuccess(),
-                },
-              ],
-              {
-                cancelable: false,
-              },
-            );
-          } else {
-            setloadingStatus1({status: 3, msg: 'Internet Connection Lost.'});
-            Alert.alert(
-              'Failed !!',
-              response.data.msg,
-              [
-                {
-                  text: 'Ok',
-                },
-              ],
-              {
-                cancelable: false,
-              },
-            );
-          }
-        })
-        .catch(error => {
-          setloadingStatus1({status: 3, msg: 'Internet Connection Lost.'});
-          console.log('Axios error (insertData)', error);
-        });
-    } catch (error) {
-      console.log(
-        'Uexpected error occured during doctor appointment cancelation.',
-      );
-      console.log('Error is (insertData): ', error);
-      setloadingStatus1({status: 3, msg: 'Internet Connection Lost.'});
-    }
-  };
-
-  const handlePasswordChange = () => {
-    setSettingsModalStatus(false);
-    if (modalID === 'Change Password') {
-      if (
-        newPassword.length > 0 &&
-        confirmNewPassword.length > 0 &&
-        newPassword === confirmNewPassword
-      ) {
-        insertData();
-      } else {
-        Alert.alert(
-          'Error !!',
-          'New Password not matched!.',
-          [
-            {
-              text: 'Ok',
-            },
-          ],
-          {
-            cancelable: false,
-          },
-        );
-      }
-    }
-  };
-
-  const afterSuccess = () => {
-    setSettingsModalStatus(false);
-    setpassword('');
-    setnewPassword('');
-    setconfirmNewPassword('');
-    props.navigation.goBack();
-  };
-
-  const onReload = () => {
-    handlePasswordChange();
-  };
-
-  const handleCloseLS = () => {
-    setloadingStatus1({status: 2, msg: ''});
-    setpassword('');
-    setnewPassword('');
-    setconfirmNewPassword('');
-  };
 
   return (
     <View
@@ -164,13 +60,7 @@ const SignAndSecurityScreen = props => {
         setconfirmNewPassword={setconfirmNewPassword}
         confirmNewPassword={confirmNewPassword}
         navigation={props.navigation}
-        saveChangesPassword={handlePasswordChange}
-      />
-      <CustomLoading1
-        loadingStatus={loadingStatus1}
-        loadingTitle="Password changing..."
-        onReload={onReload}
-        onClose={handleCloseLS}
+        // saveChangesPassword={handlePasswordChange}
       />
     </View>
   );
@@ -207,6 +97,9 @@ const SettingModal = props => {
   const [addField, setaddField] = useState(false);
   const [phone, setphone] = useState(null);
   const [email, setemail] = useState('');
+  const [newPassword, setnewPassword] = useState('');
+  const [confirmNewPassword, setconfirmNewPassword] = useState('');
+  const [password, setpassword] = useState('');
 
   const onModalClose = () => {
     setaddField(false),
@@ -530,7 +423,7 @@ const SettingModal = props => {
               />
             </View>
             <TouchableOpacity activeOpacity={0.5} style={styles1.btn2}>
-              <Text style={styles1.title7}>Forget Password ?</Text>
+              <Text style={styles1.title7}>Forgot Password ?</Text>
             </TouchableOpacity>
             <View style={styles1.inputContainer1}>
               <TextInput

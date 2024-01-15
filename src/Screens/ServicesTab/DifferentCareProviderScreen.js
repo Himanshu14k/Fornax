@@ -1,12 +1,13 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native';
-import CustomHeader from '../../Navigators/CustomHeader';
+// import CustomHeader from '../../Navigators/CustomHeader';
 import {darkMode, lightMode} from '../../Constants/Colors';
 import {useSelector} from 'react-redux';
 import {ProviderListComponent} from '../../Components/DoctorTabs/DifferentCareProviderScreenComponents/DifferentCareProviderScreenComponent';
 import SimpleToast from 'react-native-simple-toast';
 import axios from 'axios';
 import {CustomLoadingComponent2} from '../../Components/CommonComponent/CustomLoadingComponents';
+import CustomHeader from '../../Components/Molecules/CustomHeader/CustomHeader';
 
 const DifferentCareProviderScreen = props => {
   const status = useSelector(state => state.otherReducer.status);

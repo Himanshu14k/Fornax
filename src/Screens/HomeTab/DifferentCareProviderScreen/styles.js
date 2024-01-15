@@ -4,8 +4,10 @@ import {adjustedFontSize, widthToDp} from '../../../Utils/dimensionsInPixel';
 const styles1 = StyleSheet.create({
   container1: {
     flex: 1,
+    // margin: widthToDp(1),
   },
   container2: {
+    // marginHorizontal: widthToDp(1),
     paddingHorizontal: widthToDp(5),
     paddingVertical: widthToDp(2.5),
     flexDirection: 'row',
@@ -42,11 +44,12 @@ const styles1 = StyleSheet.create({
 
 const styles2 = StyleSheet.create({
   container1: {
-    backgroundColor: 'cyan',
-    maxWidth: widthToDp(46),
-    maxHeight: widthToDp(55),
-    marginVertical: widthToDp(2),
-    marginHorizontal: widthToDp(1),
+    backgroundColor: 'white',
+    width: widthToDp(47),
+    // maxWidth: widthToDp(46),
+    // paddingHorizontal: widthToDp(1),
+    maxHeight: widthToDp(70),
+    margin: widthToDp(1),
     borderRadius: 10,
     elevation: 5,
   },
@@ -63,7 +66,7 @@ const styles2 = StyleSheet.create({
   },
   container3: {
     paddingBottom: widthToDp(3),
-    paddingTop: widthToDp(1),
+    paddingTop: widthToDp(3),
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
   },
@@ -76,7 +79,7 @@ const styles2 = StyleSheet.create({
   title2: {
     fontSize: adjustedFontSize(11),
     fontWeight: '500',
-    paddingBottom: widthToDp(1),
+    paddingBottom: widthToDp(2),
   },
   title3: {
     fontSize: adjustedFontSize(10.5),
@@ -86,10 +89,10 @@ const styles2 = StyleSheet.create({
     backgroundColor: '#00d9ff',
     alignSelf: 'center',
     paddingHorizontal: widthToDp(8),
-    paddingVertical: widthToDp(1),
+    paddingVertical: widthToDp(2),
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 20,
+    borderRadius: 10,
   },
   title4: {
     fontSize: adjustedFontSize(11),

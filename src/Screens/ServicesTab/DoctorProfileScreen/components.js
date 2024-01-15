@@ -16,6 +16,7 @@ import {widthToDp} from '../../../Utils/dimensionsInPixel';
 import {ViewPicModal} from '../../../Components/Molecules/ViewPic/viewPicModal';
 import {FloatingBtnSection} from '../../../Components/Molecules/FloatingBtn/floatingBtnSection';
 import {style6, style7, style8} from './style';
+import { navigate } from '../../../Navigations/navigationServices';
 
 const DoctorDetailsComponent = props => {
   const status = useSelector(state => state.otherReducer.status);
@@ -275,22 +276,24 @@ const ScrollableCardsComponent = ({
   mode,
 }) => {
   const handleOnTimeClick = (id, time, type, format) => {
-    setpatientAndSlotInfo({
-      sdId: data?._id,
-      stId: id,
-      date: data?.day,
-      date_show: data?.day_show,
-      time: time,
-      format: format,
-      authID: authID,
-      mode: mode,
-      type: type,
-    });
+    // setpatientAndSlotInfo({
+    //   sdId: data?._id,
+    //   stId: id,
+    //   date: data?.day,
+    //   date_show: data?.day_show,
+    //   time: time,
+    //   format: format,
+    //   authID: authID,
+    //   mode: mode,
+    //   type: type,
+    // });
+    navigate('patientDetailsEnter')
   };
 
-  return data?.morningSlots?.length > 0 ||
-    data?.afternoonSlots?.length > 0 ||
-    data?.eveningSlots?.length > 0 ? (
+  // return data?.morningSlots?.length > 0 ||
+  //   data?.afternoonSlots?.length > 0 ||
+  //   data?.eveningSlots?.length > 0 ? (
+  return true ? (
     <ScrollView
       showsVerticalScrollIndicator={false}
       contentContainerStyle={style7.container1}>
@@ -309,9 +312,12 @@ const ScrollableCardsComponent = ({
           Morning
         </Text>
         <View style={style7.container3}>
-          {data?.morningSlots?.length > 0 ? (
-            data?.morningSlots?.map((item, id) =>
-              item?.status == 'A' ? (
+          {/* {data?.morningSlots?.length > 0 ? ( */}
+          {true ? (
+            // data?.morningSlots?.map((item, id) =>
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]?.map((item, id) =>
+              // item?.status == 'A' ? (
+              'A' == 'A' ? (
                 <TouchableOpacity
                   key={id}
                   activeOpacity={0.7}
@@ -336,7 +342,8 @@ const ScrollableCardsComponent = ({
                         ? darkMode.textColor
                         : lightMode.textColor,
                     ]}>
-                    {item.time}
+                    {/* {item.time} */}
+                    {'12:30 PM'}
                   </Text>
                 </TouchableOpacity>
               ) : (
@@ -393,9 +400,12 @@ const ScrollableCardsComponent = ({
           Afternoon
         </Text>
         <View style={style7.container3}>
-          {data?.afternoonSlots?.length > 0 ? (
-            data?.afternoonSlots?.map((item, id) =>
-              item?.status == 'A' ? (
+          {/* {data?.afternoonSlots?.length > 0 ? ( */}
+          {true ? (
+            // data?.afternoonSlots?.map((item, id) =>
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]?.map((item, id) =>
+              // item?.status == 'A' ? (
+              'A' == 'A' ? (
                 <TouchableOpacity
                   key={id}
                   activeOpacity={0.7}
@@ -410,7 +420,7 @@ const ScrollableCardsComponent = ({
                       backgroundColor: '#99ccff',
                     },
                   ]}
-                  onPress={() => handleOnTimeClick(item._id, item?.time, 2)}>
+                  onPress={() => handleOnTimeClick(item._id, item?.time, 1)}>
                   <Text
                     style={[
                       style7.title2,
@@ -420,7 +430,8 @@ const ScrollableCardsComponent = ({
                         ? darkMode.textColor
                         : lightMode.textColor,
                     ]}>
-                    {item.time}
+                    {/* {item.time} */}
+                    {'12:30 PM'}
                   </Text>
                 </TouchableOpacity>
               ) : (
@@ -446,7 +457,7 @@ const ScrollableCardsComponent = ({
                         ? darkMode.textColor
                         : lightMode.textColor,
                     ]}>
-                    {item.time}
+                    {item?.time}
                   </Text>
                 </View>
               ),
@@ -477,9 +488,12 @@ const ScrollableCardsComponent = ({
           Evening
         </Text>
         <View style={style7.container3}>
-          {data?.eveningSlots?.length > 0 ? (
-            data?.eveningSlots?.map((item, id) =>
-              item?.status == 'A' ? (
+          {/* {data?.eveningSlots?.length > 0 ? ( */}
+          {true ? (
+            // data?.eveningSlots?.map((item, id) =>
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]?.map((item, id) =>
+              // item?.status == 'A' ? (
+              'A' == 'A' ? (
                 <TouchableOpacity
                   key={id}
                   activeOpacity={0.7}
@@ -494,7 +508,7 @@ const ScrollableCardsComponent = ({
                       backgroundColor: '#99ccff',
                     },
                   ]}
-                  onPress={() => handleOnTimeClick(item._id, item?.time, 3)}>
+                  onPress={() => handleOnTimeClick(item._id, item?.time, 1)}>
                   <Text
                     style={[
                       style7.title2,
@@ -504,7 +518,8 @@ const ScrollableCardsComponent = ({
                         ? darkMode.textColor
                         : lightMode.textColor,
                     ]}>
-                    {item.time}
+                    {/* {item.time} */}
+                    {'12:30 PM'}
                   </Text>
                 </TouchableOpacity>
               ) : (
@@ -530,7 +545,7 @@ const ScrollableCardsComponent = ({
                         ? darkMode.textColor
                         : lightMode.textColor,
                     ]}>
-                    {item.time}
+                    {item?.time}
                   </Text>
                 </View>
               ),

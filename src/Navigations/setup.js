@@ -8,13 +8,13 @@ const Setup = () => {
   const authStatus = useSelector(
     state => state.authenticationReducer.authStatus,
   );
-  if (authStatus === true) {
+  if (!authStatus) {
     return (
       <NavigationContainer ref={navigationRef}>
         <DrawerNavigator data="home" />
       </NavigationContainer>
     );
-  } else if (authStatus === false) {
+  } else if (authStatus) {
     return (
       <NavigationContainer ref={navigationRef}>
         <DrawerNavigator data="auth" />

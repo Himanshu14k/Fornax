@@ -8,6 +8,7 @@ import {
 import {doctorState} from '../../../Constants/allStates';
 import {darkMode, lightMode} from '../../../Constants/themeColors';
 import {style1, style2} from './styles';
+import {navigate} from '../../../Navigations/navigationServices';
 
 const BoxComponenet = props => {
   return (
@@ -15,9 +16,9 @@ const BoxComponenet = props => {
       activeOpacity={0.6}
       style={style2.container1}
       onPress={() =>
-        props.navigation.navigate(props.routeName, {
-          id: props.id,
-          title: props.title,
+        navigate(props.routeName, {
+          id: props?.id,
+          title: props?.title,
         })
       }>
       <View style={style2.imageContainer}>
@@ -61,7 +62,7 @@ const HealthcareServicesComponent = props => {
         <BoxComponenet
           title="Find Therapist"
           image={doctorState.images.therapist}
-          routeName="therapist"
+          routeName="specialities"
           navigation={props.navigation}
         />
         <BoxComponenet

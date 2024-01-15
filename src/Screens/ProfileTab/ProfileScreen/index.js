@@ -23,6 +23,7 @@ import SwitchComponent from '../../../Components/Molecules/Switch/switchComponen
 import {setAuthStatus} from '../../../States/Actions/AuthStatusActions/actions';
 import {MediaSelectionOptionModal} from '../../../Components/Molecules/MediaSelectionOptions/mediaSelectionOptionModal';
 import {androidCameraPermission} from '../../../Utils/DifferentPermissionAccess';
+import { navigate } from '../../../Navigations/navigationServices';
 
 const ProfileScreen = props => {
   const status = useSelector(state => state.otherReducer.status);
@@ -331,9 +332,6 @@ const TopAreaContainerComponent = () => {
 };
 
 const dummyData = [
-  // 'Health & Fitness Dashboard',
-  'Appointments Records',
-  'All Appoinments',
   'Payments History',
   'Bookmarks',
   'Sign and Security',
@@ -410,30 +408,21 @@ const BottomAreaContainerComponent = props => {
   };
 
   const onClickEvent = title => {
-    // if (title === 'Health & Fitness Dashboard') {
-    //   props.navigation.navigate('healthAndFitnessDashboard');
-    // }
-    if (title === 'Appointments Records') {
-      props.navigation.navigate('healthCareAppoinManagement');
-    }
-    // else if (title === 'All Appoinments') {
-    //   props.navigation.navigate('allAppoinments');
-    // }
-    else if (title === 'Payments History') {
-      props.navigation.navigate('paymentHistory');
+    if (title === 'Payments History') {
+      navigate('paymentHistory');
     } else if (title === 'Bookmarks') {
-      //props.navigation.navigate('bookmark');
+      navigate('bookmark');
     } else if (title === 'Sign and Security') {
-      //props.navigation.navigate('signAndSecurity');
+      navigate('signAndSecurity');
     } else if (title === 'Help Center') {
-      //props.navigation.navigate('helpCenter');
+      navigate('helpCenter');
       onSelectImage();
     } else if (title === 'Privacy Policy') {
-      //props.navigation.navigate('privacyPolicy');
+      navigate('privacyPolicy');
     } else if (title === 'Terms & Conditions') {
-      //props.navigation.navigate('termsAndCondition');
+      navigate('termsAndCondition');
     } else if (title === 'About Us') {
-      //props.navigation.navigate('aboutUs');
+      navigate('aboutUs');
     }
   };
 
@@ -503,7 +492,7 @@ const BottomAreaContainerComponent = props => {
               styles3.title1,
               status ? darkMode.textColor : lightMode.textColor,
             ]}>
-            {name}
+            {"name"}
           </Text>
         </View>
       </View>

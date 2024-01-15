@@ -16,7 +16,7 @@ const Tab = createMaterialTopTabNavigator();
 const ViewAllSlotsScreen = props => {
   const status = useSelector(state => state.otherReducer.status);
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -76,7 +76,7 @@ const ViewAllSlotsScreen = props => {
           />
         </Tab.Navigator>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

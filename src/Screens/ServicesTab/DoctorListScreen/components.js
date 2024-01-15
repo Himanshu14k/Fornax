@@ -13,6 +13,7 @@ import {darkMode, lightMode} from '../../../Constants/themeColors';
 import {widthToDp} from '../../../Utils/dimensionsInPixel';
 import {style1, style2, style3} from './style';
 import {navigate} from '../../../Navigations/navigationServices';
+import Spacer from '../../../Components/Atoms/Spacer';
 
 const SortingModal = props => {
   const status = useSelector(state => state.otherReducer.status);
@@ -163,14 +164,15 @@ const SortAndFilterBtnComponent = props => {
   const status = useSelector(state => state.otherReducer.status);
 
   return (
-    <View style={[style2.container1]}>
+    <View
+      style={[
+        style2.container1,
+        status
+          ? darkMode.contentbackgroundColor
+          : lightMode.contentbackgroundColor,
+      ]}>
       <TouchableOpacity
-        style={[
-          style2.container2,
-          status
-            ? darkMode.contentbackgroundColor
-            : lightMode.contentbackgroundColor,
-        ]}
+        style={[style2.container2]}
         activeOpacity={0.5}
         onPress={() => props.setsortingModalStatus(!props.sortingModalStatus)}>
         <Icon
@@ -191,13 +193,14 @@ const SortAndFilterBtnComponent = props => {
           Sort
         </Text>
       </TouchableOpacity>
-      <View
-        style={[
-          style2.seprator,
-          status
-            ? lightMode.contentbackgroundColor
-            : darkMode.contentbackgroundColor,
-        ]}
+      <Spacer
+        height={'100%'}
+        width={widthToDp(0.3)}
+        background={
+          !status
+            ? lightMode.screenBackgroundColors.backgroundColor
+            : darkMode.screenBackgroundColors.backgroundColor
+        }
       />
       <TouchableOpacity
         style={[
@@ -257,8 +260,8 @@ const ListOfDoctorsComponent = props => {
           <View style={style3.imageContainer}>
             <Image
               style={style3.image}
-              source={{uri: item?.general_Info?.profilePic}}
-              // source={require('../../../Assets/Images/InstantDC.jpg')}
+              // source={{uri: item?.general_Info?.profilePic}}
+              source={require('../../../Assets/Images/InstantDC.jpg')}
             />
           </View>
           <View style={style3.container5}>
@@ -268,8 +271,8 @@ const ListOfDoctorsComponent = props => {
                 style3.title1,
                 status ? darkMode.textColor : lightMode.textColor,
               ]}>
-              {item?.general_Info?.name}
-              {/* {'Jhon Doe'} */}
+              {/* {item?.general_Info?.name} */}
+              {'Jhon Doe'}
             </Text>
           </View>
           <View style={style3.container5}>
@@ -279,8 +282,8 @@ const ListOfDoctorsComponent = props => {
                 style3.title2,
                 status ? darkMode.textColor : lightMode.textColor,
               ]}>
-              {item?.professional_Info?.specialities}
-              {/* {'Cardiologist'} */}
+              {/* {item?.professional_Info?.specialities} */}
+              {'Cardiologist'}
             </Text>
           </View>
           <View style={style3.container5}>
@@ -290,8 +293,8 @@ const ListOfDoctorsComponent = props => {
                 style3.title2,
                 status ? darkMode.textColor : lightMode.textColor,
               ]}>
-              {item?.professional_Info?.yoe} years of experiences
-              {/* {'3'} years of experiences */}
+              {/* {item?.professional_Info?.yoe} years of experiences */}
+              {'3'} years of experiences
             </Text>
           </View>
         </View>
@@ -303,7 +306,7 @@ const ListOfDoctorsComponent = props => {
                 style3.title2,
                 status ? darkMode.textColor : lightMode.textColor,
               ]}>
-              {item?.professional_Info?.about}
+              {"item?.professional_Info?.about item?.professional_Info?.about"}
             </Text>
           </View>
           <View style={style3.container8}>
@@ -313,12 +316,13 @@ const ListOfDoctorsComponent = props => {
                 style3.title2,
                 status ? darkMode.textColor : lightMode.textColor,
               ]}>
-              {item?.contact_Info?.address}
+              {"item?.contact_Info?.address"}
             </Text>
           </View>
           <View style={style3.container9}>
             <View style={style3.container10}>
-              {item?.professional_Info?.avail_video_slots > 0 ? (
+              {/* {item?.professional_Info?.avail_video_slots > 0 ? ( */}
+              {true ? (
                 <TouchableOpacity
                   activeOpacity={0.7}
                   style={[style3.btn1, {backgroundColor: '#009900'}]}
@@ -351,8 +355,8 @@ const ListOfDoctorsComponent = props => {
                       color="#00d9ff"
                     />
                     <Text style={style3.title4}>
-                      {item?.professional_Info?.vFees}
-                      {/* {'500'} */}
+                      {/* {item?.professional_Info?.vFees} */}
+                      {'500'}
                     </Text>
                   </View>
                 </TouchableOpacity>
@@ -410,7 +414,8 @@ const ListOfDoctorsComponent = props => {
               )}
             </View>
             <View style={style3.container10}>
-              {item?.professional_Info?.avail_inClinic_slots > 0 ? (
+              {/* {item?.professional_Info?.avail_inClinic_slots > 0 ? ( */}
+              {true ? (
                 <TouchableOpacity
                   activeOpacity={0.7}
                   style={[style3.btn1, {backgroundColor: '#cc33ff'}]}
@@ -517,7 +522,7 @@ const ListOfDoctorsComponent = props => {
       ]}>
       <FlatList
         contentContainerStyle={style3.container2}
-        data={props?.data}
+        data={dummData}
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}
       />

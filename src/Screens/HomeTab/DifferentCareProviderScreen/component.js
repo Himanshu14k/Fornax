@@ -14,7 +14,8 @@ import {adjustedFontSize, widthToDp} from '../../../Utils/dimensionsInPixel';
 import {darkMode, lightMode} from '../../../Utils/Colors';
 import {styles1, styles2} from './styles';
 import {dummtempData} from '../../../Components/Organisms/ServiceProviderDetails/ServiceProviderDetailsComponent';
-import { navigate } from '../../../Navigations/navigationServices';
+import {navigate} from '../../../Navigations/navigationServices';
+import Spacer from '../../../Components/Atoms/Spacer';
 
 const ProviderListComponent = props => {
   const status = useSelector(state => state.otherReducer.status);
@@ -112,9 +113,9 @@ const ProviderListComponent = props => {
             showsVerticalScrollIndicator={false}
             contentContainerStyle={[
               styles1.container4,
-              status
-                ? darkMode.containerbackgroundColor
-                : lightMode.containerbackgroundColor,
+              // status
+              //   ? darkMode.containerbackgroundColor
+              //   : lightMode.containerbackgroundColor,
             ]}
             // data={props?.data}
             data={dummtempData}
@@ -163,7 +164,7 @@ const ProviderComponent = props => {
       <View style={styles2.container2}>
         <Image
           style={styles2.image1}
-        //   source={{uri: props.item.general_Info.profilePic}}
+          //   source={{uri: props.item.general_Info.profilePic}}
           source={require('../../../Assets/Images/doc.jpeg')}
         />
       </View>

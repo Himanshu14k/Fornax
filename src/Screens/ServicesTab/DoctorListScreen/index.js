@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {useDispatch, useSelector} from 'react-redux';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
 import axios from 'axios';
 import SimpleToast from 'react-native-simple-toast';
 import {darkMode, lightMode} from '../../../Constants/themeColors';
@@ -147,7 +147,7 @@ const DoctorListScreen = ({route}) => {
   }, []);
 
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -231,7 +231,7 @@ const DoctorListScreen = ({route}) => {
         sortingModalStatus={sortingModalStatus}
         setsortingModalStatus={setsortingModalStatus}
       /> */}
-    </SafeAreaView>
+    </View>
   );
 };
 

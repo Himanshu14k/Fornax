@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, SafeAreaView} from 'react-native';
+import {ScrollView, SafeAreaView, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import CustomHeader from '../../../Components/Molecules/CustomHeader/CustomHeader';
 import {doctorState} from '../../../Constants/allStates';
@@ -13,7 +13,7 @@ import {darkMode, lightMode} from '../../../Constants/themeColors';
 const ServicesScreen = props => {
   const status = useSelector(state => state.otherReducer.status);
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -35,7 +35,7 @@ const ServicesScreen = props => {
         />
         <PriventiveCareComponent navigation={props.navigation} />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 

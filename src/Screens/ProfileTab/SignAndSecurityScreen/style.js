@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {adjustedFontSize, widthToDp} from '../../../Utils/dimensionsInPixel';
+import {Platform, StatusBar, StyleSheet} from 'react-native';
+import {adjustedFontSize, heightToDp, widthToDp} from '../../../Utils/dimensionsInPixel';
 
 const styles1 = StyleSheet.create({
   container1: {
@@ -90,7 +90,10 @@ const styles1 = StyleSheet.create({
 
   btn3: {
     position: 'absolute',
-    top: widthToDp(1),
+    top:
+      Platform.OS === 'ios'
+        ? StatusBar.currentHeight + heightToDp(5)
+        : StatusBar.currentHeight + heightToDp(1),
     right: widthToDp(5),
   },
 });

@@ -4,11 +4,10 @@ import {useSelector} from 'react-redux';
 import {Icon} from '@rneui/themed';
 import {styles} from './styles';
 import CustomTextInput from '../../Atoms/TextInput/customTextInput';
-import {heightToDp, widthToDp} from '../../../Utils/dimensionsInPixel';
-import {darkMode, lightMode} from '../../../Utils/Colors';
-import Spacer from '../../Atoms/Spacer';
-import {goBack} from '../../../Navigations/navigationServices';
 import {useNavigation} from '@react-navigation/native';
+import {goBack} from '../../../Navigations/navigationServices';
+import {widthToDp} from '../../../Utils/dimensionsInPixel';
+import {darkMode, lightMode} from '../../../Constants/themeColors';
 
 const CustomHeader = ({
   isHome,
@@ -24,7 +23,7 @@ const CustomHeader = ({
 
   return (
     <View style={styles.container}>
-      <Spacer height={StatusBar.currentHeight} />
+      {/* <Spacer height={StatusBar.currentHeight} /> */}
       <View style={styles.container1}>
         {isHome ? (
           <View style={styles.container2}>

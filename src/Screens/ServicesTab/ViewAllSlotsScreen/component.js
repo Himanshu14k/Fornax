@@ -73,22 +73,20 @@ const ScrollableCardsComponent = ({
   mode,
 }) => {
   const handleOnTimeClick = (id, time, type, format) => {
-    setpatientAndSlotInfo({
-      sdId: data?._id,
-      stId: id,
-      date: data?.day,
-      date_show: data?.day_show,
-      time: time,
-      format: format,
-      authID: authID,
-      mode: mode,
-      type: type,
-    });
+    // setpatientAndSlotInfo({
+    //   sdId: data?._id,
+    //   stId: id,
+    //   date: data?.day,
+    //   date_show: data?.day_show,
+    //   time: time,
+    //   format: format,
+    //   authID: authID,
+    //   mode: mode,
+    //   type: type,
+    // });
   };
 
-  return data?.morningSlots?.length > 0 ||
-    data?.afternoonSlots?.length > 0 ||
-    data?.eveningSlots?.length > 0 ? (
+  return (
     <ScrollView
       showsVerticalScrollIndicator={false}
       contentContainerStyle={style3.container1}>
@@ -107,76 +105,223 @@ const ScrollableCardsComponent = ({
           Morning
         </Text>
         <View style={style3.container3}>
-          {data?.morningSlots?.length > 0 ? (
+          {/* {data?.morningSlots?.length > 0 ? (
             data?.morningSlots?.map((item, id) =>
-              item?.status == 'A' ? (
-                <TouchableOpacity
-                  key={id}
-                  activeOpacity={0.7}
+              item?.status == 'A' ? ( */}
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 1, 1, 1, 1]?.map((item, id) =>
+            'A' == 'A' ? (
+              <TouchableOpacity
+                key={id}
+                activeOpacity={0.7}
+                style={[
+                  style3.btn2,
+                  {
+                    borderColor: status
+                      ? darkMode.screenBackgroundColors.backgroundColor
+                      : lightMode.screenBackgroundColors.backgroundColor,
+                  },
+                  patientAndSlotInfo?.stId === item?._id && {
+                    backgroundColor: '#99ccff',
+                  },
+                ]}
+                onPress={() => handleOnTimeClick(item._id, item?.time, 1)}>
+                <Text
                   style={[
-                    style3.btn2,
-                    {
-                      borderColor: status
-                        ? darkMode.screenBackgroundColors.backgroundColor
-                        : lightMode.screenBackgroundColors.backgroundColor,
-                    },
-                    patientAndSlotInfo?.stId === item?._id && {
-                      backgroundColor: '#99ccff',
-                    },
-                  ]}
-                  onPress={() => handleOnTimeClick(item._id, item?.time, 1)}>
-                  <Text
-                    style={[
-                      style3.title2,
-                      patientAndSlotInfo?.stId === item?._id
-                        ? {color: '#000'}
-                        : status
-                        ? darkMode.textColor
-                        : lightMode.textColor,
-                    ]}>
-                    {item.time}
-                  </Text>
-                </TouchableOpacity>
-              ) : (
-                <View
-                  key={id}
-                  style={[
-                    style3.btn2,
-                    {
-                      borderColor: status
-                        ? darkMode.screenBackgroundColors.backgroundColor
-                        : lightMode.screenBackgroundColors.backgroundColor,
-                    },
-                    status
-                      ? darkMode.containerbackgroundColor1
-                      : lightMode.containerbackgroundColor1,
+                    style3.title2,
+                    patientAndSlotInfo?.stId === item?._id
+                      ? {color: '#000'}
+                      : status
+                      ? darkMode.textColor
+                      : lightMode.textColor,
                   ]}>
-                  <Text
-                    style={[
-                      style3.title2,
-                      patientAndSlotInfo?.stId === item?._id
-                        ? {color: '#000'}
-                        : status
-                        ? darkMode.textColor
-                        : lightMode.textColor,
-                    ]}>
-                    {item.time}
-                  </Text>
-                </View>
-              ),
-            )
-          ) : (
-            <Text
-              style={[
-                style3.title4,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              No Morning Slots Available on this day.
-            </Text>
+                  12:45 PM
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              <View
+                key={id}
+                style={[
+                  style3.btn2,
+                  {
+                    borderColor: status
+                      ? darkMode.screenBackgroundColors.backgroundColor
+                      : lightMode.screenBackgroundColors.backgroundColor,
+                  },
+                  status
+                    ? darkMode.containerbackgroundColor1
+                    : lightMode.containerbackgroundColor1,
+                ]}>
+                <Text
+                  style={[
+                    style3.title2,
+                    patientAndSlotInfo?.stId === item?._id
+                      ? {color: '#000'}
+                      : status
+                      ? darkMode.textColor
+                      : lightMode.textColor,
+                  ]}>
+                  {item.time}
+                </Text>
+              </View>
+            ),
           )}
         </View>
       </View>
       <View
+        style={[
+          style3.container2,
+          status
+            ? darkMode.containerbackgroundColor
+            : lightMode.containerbackgroundColor,
+        ]}>
+        <Text
+          style={[
+            style3.title1,
+            status ? darkMode.textColor : lightMode.textColor,
+          ]}>
+          Afternoon
+        </Text>
+        <View style={style3.container3}>
+          {/* {data?.morningSlots?.length > 0 ? (
+            data?.morningSlots?.map((item, id) =>
+              item?.status == 'A' ? ( */}
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 1, 1, 1, 1]?.map((item, id) =>
+            'A' == 'A' ? (
+              <TouchableOpacity
+                key={id}
+                activeOpacity={0.7}
+                style={[
+                  style3.btn2,
+                  {
+                    borderColor: status
+                      ? darkMode.screenBackgroundColors.backgroundColor
+                      : lightMode.screenBackgroundColors.backgroundColor,
+                  },
+                  patientAndSlotInfo?.stId === item?._id && {
+                    backgroundColor: '#99ccff',
+                  },
+                ]}
+                onPress={() => handleOnTimeClick(item._id, item?.time, 1)}>
+                <Text
+                  style={[
+                    style3.title2,
+                    patientAndSlotInfo?.stId === item?._id
+                      ? {color: '#000'}
+                      : status
+                      ? darkMode.textColor
+                      : lightMode.textColor,
+                  ]}>
+                  12:45 PM
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              <View
+                key={id}
+                style={[
+                  style3.btn2,
+                  {
+                    borderColor: status
+                      ? darkMode.screenBackgroundColors.backgroundColor
+                      : lightMode.screenBackgroundColors.backgroundColor,
+                  },
+                  status
+                    ? darkMode.containerbackgroundColor1
+                    : lightMode.containerbackgroundColor1,
+                ]}>
+                <Text
+                  style={[
+                    style3.title2,
+                    patientAndSlotInfo?.stId === item?._id
+                      ? {color: '#000'}
+                      : status
+                      ? darkMode.textColor
+                      : lightMode.textColor,
+                  ]}>
+                  {item.time}
+                </Text>
+              </View>
+            ),
+          )}
+        </View>
+      </View>
+      <View
+        style={[
+          style3.container2,
+          status
+            ? darkMode.containerbackgroundColor
+            : lightMode.containerbackgroundColor,
+        ]}>
+        <Text
+          style={[
+            style3.title1,
+            status ? darkMode.textColor : lightMode.textColor,
+          ]}>
+          Evening
+        </Text>
+        <View style={style3.container3}>
+          {/* {data?.morningSlots?.length > 0 ? (
+            data?.morningSlots?.map((item, id) =>
+              item?.status == 'A' ? ( */}
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 1, 1, 1, 1]?.map((item, id) =>
+            'A' == 'A' ? (
+              <TouchableOpacity
+                key={id}
+                activeOpacity={0.7}
+                style={[
+                  style3.btn2,
+                  {
+                    borderColor: status
+                      ? darkMode.screenBackgroundColors.backgroundColor
+                      : lightMode.screenBackgroundColors.backgroundColor,
+                  },
+                  patientAndSlotInfo?.stId === item?._id && {
+                    backgroundColor: '#99ccff',
+                  },
+                ]}
+                onPress={() => handleOnTimeClick(item._id, item?.time, 1)}>
+                <Text
+                  style={[
+                    style3.title2,
+                    patientAndSlotInfo?.stId === item?._id
+                      ? {color: '#000'}
+                      : status
+                      ? darkMode.textColor
+                      : lightMode.textColor,
+                  ]}>
+                  12:45 PM
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              <View
+                key={id}
+                style={[
+                  style3.btn2,
+                  {
+                    borderColor: status
+                      ? darkMode.screenBackgroundColors.backgroundColor
+                      : lightMode.screenBackgroundColors.backgroundColor,
+                  },
+                  status
+                    ? darkMode.containerbackgroundColor1
+                    : lightMode.containerbackgroundColor1,
+                ]}>
+                <Text
+                  style={[
+                    style3.title2,
+                    patientAndSlotInfo?.stId === item?._id
+                      ? {color: '#000'}
+                      : status
+                      ? darkMode.textColor
+                      : lightMode.textColor,
+                  ]}>
+                  {item.time}
+                </Text>
+              </View>
+            ),
+          )}
+        </View>
+      </View>
+      {/* <View
         style={[
           style3.container2,
           status
@@ -343,27 +488,28 @@ const ScrollableCardsComponent = ({
             </Text>
           )}
         </View>
-      </View>
+      </View> */}
     </ScrollView>
-  ) : (
-    <View style={style3.container4}>
-      <View
-        style={[
-          style3.container5,
-          status
-            ? darkMode.contentbackgroundColor
-            : lightMode.contentbackgroundColor,
-        ]}>
-        <Text
-          style={[
-            style3.title3,
-            status ? darkMode.textColor : lightMode.textColor,
-          ]}>
-          No Slots Available on this day.
-        </Text>
-      </View>
-    </View>
   );
+  // : (
+  //   <View style={style3.container4}>
+  //     <View
+  //       style={[
+  //         style3.container5,
+  //         status
+  //           ? darkMode.contentbackgroundColor
+  //           : lightMode.contentbackgroundColor,
+  //       ]}>
+  //       <Text
+  //         style={[
+  //           style3.title3,
+  //           status ? darkMode.textColor : lightMode.textColor,
+  //         ]}>
+  //         No Slots Available on this day.
+  //       </Text>
+  //     </View>
+  //   </View>
+  // );
 };
 
 const SlotsListComponent_T = props => {
@@ -618,11 +764,12 @@ const SlotsListComponent_T = props => {
   };
 
   const handleAppointBooking = () => {
-    if (props.data?.specialities === 'Therapist') {
-      updateSlotsAvailabilityStatus_Therapist('PO');
-    } else {
-      updateSlotsAvailabilityStatus_Doc('PO');
-    }
+    // if (props.data?.specialities === 'Therapist') {
+    //   updateSlotsAvailabilityStatus_Therapist('PO');
+    // } else {
+    //   updateSlotsAvailabilityStatus_Doc('PO');
+    // }
+    navigate('patientDetailsEnter')
   };
 
   const onReload = () => {
@@ -661,7 +808,7 @@ const SlotsListComponent_T = props => {
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={style2.container3}
-          data={data?.slots}
+          data={[1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}
           renderItem={({item, id}) => (
             <TouchableOpacity
               activeOpacity={0.7}
@@ -685,56 +832,48 @@ const SlotsListComponent_T = props => {
                     ? darkMode.textColor
                     : lightMode.textColor,
                 ]}>
-                {item?.day_show}
+                {/* {item?.day_show} */}
+                {'20 Feb'}
               </Text>
             </TouchableOpacity>
           )}
         />
       </View>
-      {/* {data?.slots?.length > 0 ? ( */}
-      {dummtempData.length > 0 ? (
-        data?.slots
-          ?.filter(item => item?.day_show === day)
-          ?.map((item, id) => (
-            <View key={id} style={style2.container4}>
-              <ScrollableCardsComponent
-                data={item}
-                patientAndSlotInfo={patientAndSlotInfo}
-                setpatientAndSlotInfo={setpatientAndSlotInfo}
-                mode="Online"
-                authID={props?.data?.id}
-                status={status}
-                id={id}
-              />
-            </View>
-          ))
-      ) : (
-        <View style={style3.container4}>
-          <View
-            style={[
-              style3.container5,
-              status
-                ? darkMode.contentbackgroundColor
-                : lightMode.contentbackgroundColor,
-            ]}>
-            <Text
-              style={[
-                style3.title3,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              Appointment slots not available.
-            </Text>
-          </View>
-        </View>
-      )}
-      {patientAndSlotInfo.stId.length > 0 && (
-        <FloatingBtnSection
-          btnTitle1="Reset"
-          btnTitle2="Book Appointment"
-          onBtn1ClickEvent={resetSelection}
-          onBtn2ClickEvent={handleAppointBooking}
+      <View style={style2.container4}>
+        <ScrollableCardsComponent
+          patientAndSlotInfo={patientAndSlotInfo}
+          setpatientAndSlotInfo={setpatientAndSlotInfo}
+          mode="Online"
+          authID={props?.data?.id}
+          status={status}
         />
-      )}
+      </View>
+      {/* ))} */}
+      {/* <View style={style3.container4}>
+        <View
+          style={[
+            style3.container5,
+            status
+              ? darkMode.contentbackgroundColor
+              : lightMode.contentbackgroundColor,
+          ]}>
+          <Text
+            style={[
+              style3.title3,
+              status ? darkMode.textColor : lightMode.textColor,
+            ]}>
+            Appointment slots not available.
+          </Text>
+        </View>
+      </View> */}
+      {/* {patientAndSlotInfo.stId.length > 0 && ( */}
+      <FloatingBtnSection
+        firstBtnTitle="Reset"
+        secondBtnTitle="Book Appointment"
+        onFirstBtnPress={resetSelection}
+        onSecondBtnPress={handleAppointBooking}
+      />
+      {/* )} */}
     </View>
   );
 };
@@ -1034,7 +1173,7 @@ const SlotsListComponent_I = props => {
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={style2.container3}
-          data={data?.slots}
+          data={[1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}
           renderItem={({item, id}) => (
             <TouchableOpacity
               activeOpacity={0.7}
@@ -1046,67 +1185,60 @@ const SlotsListComponent_I = props => {
                     ? darkMode.screenBackgroundColors.backgroundColor
                     : lightMode.screenBackgroundColors.backgroundColor,
                 },
-                day === item.day_show && {backgroundColor: '#00d9ff'},
+                day === item?.day_show && {backgroundColor: '#00d9ff'},
               ]}
-              onPress={() => setDay(item.day_show)}>
+              onPress={() => setDay(item?.day_show)}>
               <Text
                 style={[
                   style2.title1,
-                  day === item.day_show
+                  day === item?.day_show
                     ? {color: '#000'}
                     : status
                     ? darkMode.textColor
                     : lightMode.textColor,
                 ]}>
-                {item.day_show}
+                {/* {item?.day_show} */}
+                {'20 Feb'}
               </Text>
             </TouchableOpacity>
           )}
         />
       </View>
-      {data?.slots?.length > 0 ? (
-        data?.slots
-          ?.filter(item => item.day_show === day)
-          ?.map((item, id) => (
-            <View key={id} style={style2.container4}>
-              <ScrollableCardsComponent
-                data={item}
-                status={status}
-                id={id}
-                patientAndSlotInfo={patientAndSlotInfo}
-                setpatientAndSlotInfo={setpatientAndSlotInfo}
-                mode="Offline"
-                authID={props?.data?.id}
-              />
-            </View>
-          ))
-      ) : (
-        <View style={style3.container4}>
-          <View
-            style={[
-              style3.container5,
-              status
-                ? darkMode.contentbackgroundColor
-                : lightMode.contentbackgroundColor,
-            ]}>
-            <Text
-              style={[
-                style3.title3,
-                status ? darkMode.textColor : lightMode.textColor,
-              ]}>
-              Appointment slots not available.
-            </Text>
-          </View>
-        </View>
-      )}
-      {patientAndSlotInfo.stId.length > 0 && (
-        <FloatingBtnSection
-          btnTitle1="Reset"
-          btnTitle2="Book Appointment"
-          onBtn1ClickEvent={resetSelection}
-          onBtn2ClickEvent={handleAppointBooking}
+      <View style={style2.container4}>
+        <ScrollableCardsComponent
+          patientAndSlotInfo={patientAndSlotInfo}
+          setpatientAndSlotInfo={setpatientAndSlotInfo}
+          mode="Online"
+          authID={props?.data?.id}
+          status={status}
         />
-      )}
+      </View>
+      {/* ))} */}
+      {/* <View style={style3.container4}>
+        <View
+          style={[
+            style3.container5,
+            status
+              ? darkMode.contentbackgroundColor
+              : lightMode.contentbackgroundColor,
+          ]}>
+          <Text
+            style={[
+              style3.title3,
+              status ? darkMode.textColor : lightMode.textColor,
+            ]}>
+            Appointment slots not available.
+          </Text>
+        </View>
+      </View> */}
+      {/* {patientAndSlotInfo.stId.length > 0 && ( */}
+      <FloatingBtnSection
+        firstBtnTitle="Reset"
+        secondBtnTitle="Book Appointment"
+        onFirstBtnPress={resetSelection}
+        onSecondBtnPress={handleAppointBooking}
+      />
+      {/* )} */}
     </View>
   );
 };

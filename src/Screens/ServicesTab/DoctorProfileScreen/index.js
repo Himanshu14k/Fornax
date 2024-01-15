@@ -21,91 +21,8 @@ const DoctorProfileScreen = props => {
   const [data, setdata] = useState({});
   const [loadingStatus, setloadingStatus] = useState({status: 1, msg: ''});
 
-  const fetchDSData = () => {
-    try {
-      SimpleToast.show((message = 'Loading...'), (duration = 5000));
-      setloadingStatus({status: 1, msg: 'Loading...'});
-      axios
-        .get('https://fornaxbackend.herokuapp.com/pd/getDocProfile', {
-          params: {
-            id: props.route.params.id,
-          },
-        })
-        .then(response => {
-          if (response.data.status === 'success') {
-            setloadingStatus({status: 2, msg: 'Completed'});
-            setdata(response.data.data);
-          } else {
-            setloadingStatus({status: 3, msg: 'No Details Found.'});
-            SimpleToast.show(
-              (message = 'No Details Found!'),
-              (duration = 5000),
-            );
-          }
-        })
-        .catch(error => {
-          setloadingStatus({status: 3, msg: 'No Details Found.'});
-          console.log('Axios error (fetchData)', error);
-        });
-      // setloadingStatus(3);
-    } catch (error) {
-      console.log(
-        'Uexpected error occured during doctor profile data fetching.',
-      );
-      console.log('Error is (fetchData): ', error);
-      setloadingStatus({status: 3, msg: 'No Details Found.'});
-      //   handleAxiosError(error);
-    }
-  };
-
-  const fetchTherapistData = () => {
-    try {
-      SimpleToast.show((message = 'Loading...'), (duration = 5000));
-      setloadingStatus({status: 1, msg: 'Loading...'});
-      axios
-        .get('https://fornaxbackend.herokuapp.com/pd/getTherapistProfile', {
-          params: {
-            id: props.route.params.id,
-          },
-        })
-        .then(response => {
-          if (response.data.status === 'success') {
-            setloadingStatus({status: 2, msg: 'Completed'});
-            setdata(response.data.data);
-          } else {
-            setloadingStatus({status: 3, msg: 'No Details Found.'});
-            SimpleToast.show(
-              (message = 'No Details Found!'),
-              (duration = 5000),
-            );
-          }
-        })
-        .catch(error => {
-          setloadingStatus({status: 3, msg: 'No Details Found.'});
-          console.log('Axios error (fetchTherapistData)', error);
-        });
-      // setloadingStatus(3);
-    } catch (error) {
-      console.log(
-        'Uexpected error occured during therapist profile data fetching.',
-      );
-      console.log('Error is (fetchTherapistData): ', error);
-      setloadingStatus({status: 3, msg: 'No Details Found.'});
-      //   handleAxiosError(error);
-    }
-  };
-
-  // useEffect(() => {
-  //   if (props?.route?.params?.prevRouteName === 'Doctor') {
-  //     fetchDSData();
-  //   } else {
-  //     fetchTherapistData();
-  //   }
-  //   return;
-  // }, []);
-
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
@@ -180,7 +97,7 @@ const DoctorProfileScreen = props => {
           />
         </Tab.Navigator>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

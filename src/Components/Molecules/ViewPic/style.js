@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {widthToDp} from '../../../Utils/dimensionsInPixel';
+import {Platform, StatusBar, StyleSheet} from 'react-native';
+import {heightToDp, widthToDp} from '../../../Utils/dimensionsInPixel';
 
 const styles = StyleSheet.create({
   container1: {
@@ -14,9 +14,13 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   btn: {
+    // backgroundColor: 'red',
     position: 'absolute',
     right: widthToDp(2),
-    top: widthToDp(2),
+    top:
+      Platform.OS === 'ios'
+        ? StatusBar.currentHeight + heightToDp(5)
+        : StatusBar.currentHeight + heightToDp(1),
   },
 });
 

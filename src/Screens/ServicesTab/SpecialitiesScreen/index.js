@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ScrollView, SafeAreaView} from 'react-native';
+import {ScrollView, SafeAreaView, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import SimpleToast from 'react-native-simple-toast';
 import axios from 'axios';
@@ -8,9 +8,12 @@ import {specialitiesState} from '../../../Constants/allStates';
 import SwiperComponent from '../../../Components/Molecules/Swiper/swiper';
 import {darkMode, lightMode} from '../../../Constants/themeColors';
 import {SpecialitiesSectionComponent} from './component';
-import { docSpecialitiesData } from '../../../Constants/screenData';
+import {
+  docSpecialitiesData,
+  therapistSpecialitiesData,
+} from '../../../Constants/screenData';
 
-const SpecialitiesScreen = props => {
+const SpecialitiesScreen = ({props, route}) => {
   const status = useSelector(state => state.otherReducer.status);
   const [data, setData] = useState([]);
   const [loadingStatus, setloadingStatus] = useState({status: 1, msg: ''});
@@ -51,14 +54,14 @@ const SpecialitiesScreen = props => {
   // }, []);
 
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: status
           ? darkMode.screenBackgroundColors.backgroundColor
           : lightMode.screenBackgroundColors.backgroundColor,
       }}>
-      <CustomHeader navigation={props.navigation} headerTitle="Specialities" />
+      <CustomHeader headerTitle="Specialities" />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{flexGrow: 1}}>
@@ -67,10 +70,14 @@ const SpecialitiesScreen = props => {
           headerTitle="Specialities (Physions & Surgeons)"
           nextRoute={'doctorList'}
           preRN="Doctors"
-          data={docSpecialitiesData}
+          data={
+            route?.params?.title === 'Find Therapist'
+              ? therapistSpecialitiesData
+              : docSpecialitiesData
+          }
         />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 

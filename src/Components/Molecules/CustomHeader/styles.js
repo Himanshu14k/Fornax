@@ -1,29 +1,33 @@
-const {StyleSheet, StatusBar} = require('react-native');
-const {
+import {
   adjustedFontSize,
   widthToDp,
   heightToDp,
-} = require('../../../Utils/dimensionsInPixel');
+} from '../../../Constants/dimensionsInPixel';
+const {StyleSheet, StatusBar, Platform} = require('react-native');
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#00d9ff',
-    height: StatusBar.currentHeight + heightToDp(6.5),
-    // paddingBottom: heightToDp(4)
+    backgroundColor: '#00acb1',
+    height:
+      Platform.OS === 'ios'
+        ? StatusBar.currentHeight + heightToDp(11.5)
+        : StatusBar.currentHeight + heightToDp(6),
+    paddingBottom: heightToDp(1.5),
   },
   container1: {
-    flex:1,
+    flex: 1,
     flexDirection: 'row',
-    // backgroundColor: '#00d9ff',
+    alignItems: 'flex-end',
+    // backgroundColor: '#00acb1',
   },
   container2: {
     // height: '100%',
-    width: widthToDp(22),
+    width: widthToDp(28),
     justifyContent: 'center',
     alignItems: 'center',
   },
   title1: {
-    fontSize: adjustedFontSize(16.5),
+    fontSize: adjustedFontSize(22),
     fontWeight: 'bold',
     color: '#00414d',
     //fontFamily: 'sans-serif-light',
@@ -42,7 +46,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: widthToDp(2),
   },
   title3: {
-    fontSize: adjustedFontSize(15),
+    fontSize: adjustedFontSize(16),
     fontWeight: 'bold',
     color: '#000000',
     //fontFamily: 'sans-serif-light',

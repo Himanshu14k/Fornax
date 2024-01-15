@@ -1,5 +1,9 @@
 import {StyleSheet} from 'react-native';
-import {adjustedFontSize, widthToDp} from '../../../Utils/dimensionsInPixel';
+import {
+  adjustedFontSize,
+  heightToDp,
+  widthToDp,
+} from '../../../Utils/dimensionsInPixel';
 
 const style1 = StyleSheet.create({
   container1: {
@@ -40,14 +44,17 @@ const style2 = StyleSheet.create({
   container1: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    height: heightToDp(9),
+    paddingBottom: heightToDp(2)
   },
   container2: {
     flex: 1,
+    paddingTop: heightToDp(2),
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: widthToDp(3),
+    // paddingVertical: widthToDp(3),
   },
   title: {
     paddingLeft: widthToDp(2),
