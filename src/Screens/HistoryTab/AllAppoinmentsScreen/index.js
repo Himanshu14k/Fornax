@@ -72,6 +72,7 @@ const AllAppoinmentsScreen = props => {
               <AppointmentListComponent
                 navigation={props.navigation}
                 data={data1}
+                type="Therapist"
                 loadingStatus={loadingStatus}
                 // onReload={onReload1}
               />
@@ -83,6 +84,7 @@ const AllAppoinmentsScreen = props => {
               <AppointmentListComponent
                 navigation={props.navigation}
                 data={data1}
+                type="Doctor"
                 loadingStatus={loadingStatus}
                 // onReload={onReload1}
               />
@@ -94,6 +96,7 @@ const AllAppoinmentsScreen = props => {
               <AppointmentListComponent
                 navigation={props.navigation}
                 data={data2}
+                type="Therapists"
                 loadingStatus={loadingStatus}
                 // onReload={onReload2}
                 searchField
@@ -166,7 +169,7 @@ const AppointmentListComponent = props => {
   }
 
   const renderCardComponent = ({item, index}) => {
-    if (item?.type === 'Doctor') {
+    if (props?.type === 'Doctor') {
       return (
         <TouchableOpacity
           key={index}
@@ -186,7 +189,8 @@ const AppointmentListComponent = props => {
           }>
           <View style={styles.container6}>
             <Image
-              source={{uri: item?.spInfo?.profilePic}}
+              // source={{uri: item?.spInfo?.profilePic}}
+              source={require('../../../Assets/Images/Himanshu.jpeg')}
               style={styles.image1}
             />
           </View>
@@ -197,7 +201,7 @@ const AppointmentListComponent = props => {
                   styles.title1,
                   status ? darkMode.textColor : lightMode.textColor,
                 ]}>
-                {item?.patientInfo?.name}
+                {'item?.patientInfo?.name'}
               </Text>
             </View>
             <View style={styles.container9}>
@@ -218,9 +222,10 @@ const AppointmentListComponent = props => {
                     styles.title2,
                     status ? darkMode.textColor : lightMode.textColor,
                   ]}>
-                  {item?.appointmentInfo?.date_show +
+                  {/* {item?.appointmentInfo?.date_show +
                     ' ' +
-                    item?.appointmentInfo?.time}
+                    item?.appointmentInfo?.time} */}
+                  20 Feb, 09:30 AM
                 </Text>
               </View>
               <View style={styles.container11}>
@@ -240,7 +245,8 @@ const AppointmentListComponent = props => {
                     styles.title2,
                     status ? darkMode.textColor : lightMode.textColor,
                   ]}>
-                  {item?.appointmentInfo?.status}
+                  {/* {item?.appointmentInfo?.status} */}
+                  {'Upcoming'}
                 </Text>
               </View>
             </View>
@@ -262,7 +268,8 @@ const AppointmentListComponent = props => {
                     styles.title2,
                     status ? darkMode.textColor : lightMode.textColor,
                   ]}>
-                  {item?.appointmentInfo?.spType}
+                  {/* {item?.appointmentInfo?.spType} */}
+                  {'500'}
                 </Text>
               </View>
               <View style={styles.container11}>
@@ -286,14 +293,15 @@ const AppointmentListComponent = props => {
                     ? item?.duration
                     : item?.mode} */}
 
-                  {item?.appointmentInfo?.mode}
+                  {/* {item?.appointmentInfo?.mode} */}
+                  {'Online'}
                 </Text>
               </View>
             </View>
           </View>
         </TouchableOpacity>
       );
-    } else if (item?.type === 'Therapist') {
+    } else if (props?.type === 'Therapist') {
       return (
         <TouchableOpacity
           key={index}
@@ -316,7 +324,8 @@ const AppointmentListComponent = props => {
           }>
           <View style={styles.container6}>
             <Image
-              source={{uri: item?.spInfo?.profilePic}}
+              // source={{uri: item?.spInfo?.profilePic}}
+              source={require('../../../Assets/Images/Himanshu.jpeg')}
               style={styles.image1}
             />
           </View>
@@ -327,7 +336,7 @@ const AppointmentListComponent = props => {
                   styles.title1,
                   status ? darkMode.textColor : lightMode.textColor,
                 ]}>
-                {item?.spInfo?.name}
+                {'item?.spInfo?.name'}
               </Text>
             </View>
             <View style={styles.container9}>
@@ -348,9 +357,10 @@ const AppointmentListComponent = props => {
                     styles.title2,
                     status ? darkMode.textColor : lightMode.textColor,
                   ]}>
-                  {item?.timing === undefined
+                  {/* {item?.timing === undefined
                     ? item?.appointmentInfo?.time
-                    : item?.timing}
+                    : item?.timing} */}
+                  09:30 AM
                 </Text>
               </View>
               <View style={styles.container11}>
@@ -370,9 +380,10 @@ const AppointmentListComponent = props => {
                     styles.title2,
                     status ? darkMode.textColor : lightMode.textColor,
                   ]}>
-                  {item?.status === undefined
+                  {/* {item?.status === undefined
                     ? item?.appointmentInfo?.status
-                    : item?.status}
+                    : item?.status} */}
+                  On-Going
                 </Text>
               </View>
             </View>
@@ -394,7 +405,8 @@ const AppointmentListComponent = props => {
                     styles.title2,
                     status ? darkMode.textColor : lightMode.textColor,
                   ]}>
-                  {item?.spInfo?.specialities}
+                  {/* {item?.spInfo?.specialities} */}
+                  {'Physio'}
                 </Text>
               </View>
               <View style={styles.container11}>
@@ -414,9 +426,10 @@ const AppointmentListComponent = props => {
                     styles.title2,
                     status ? darkMode.textColor : lightMode.textColor,
                   ]}>
-                  {item?.therapy_At === undefined
+                  {/* {item?.therapy_At === undefined
                     ? item?.appointmentInfo?.mode
-                    : 'At ' + item?.therapy_At}
+                    : 'At ' + item?.therapy_At} */}
+                  At Home
                 </Text>
               </View>
             </View>
@@ -439,7 +452,8 @@ const AppointmentListComponent = props => {
           }>
           <View style={styles.container6}>
             <Image
-              source={{uri: item?.spInfo?.profilePic}}
+              // source={{uri: item?.spInfo?.profilePic}}
+              source={require('../../../Assets/Images/Himanshu.jpeg')}
               style={styles.image1}
             />
           </View>
@@ -450,7 +464,7 @@ const AppointmentListComponent = props => {
                   styles.title1,
                   status ? darkMode.textColor : lightMode.textColor,
                 ]}>
-                {item?.spInfo?.name}
+                {'item?.spInfo?.name'}
               </Text>
             </View>
             <View style={styles.container9}>
@@ -471,9 +485,10 @@ const AppointmentListComponent = props => {
                     styles.title2,
                     status ? darkMode.textColor : lightMode.textColor,
                   ]}>
-                  {item?.workingHr_from?.title +
+                  {/* {item?.workingHr_from?.title +
                     ' to ' +
-                    item?.workingHr_till?.title}
+                    item?.workingHr_till?.title} */}
+                  09 AM to 10 AM
                 </Text>
               </View>
               <View style={styles.container11}>
@@ -493,7 +508,8 @@ const AppointmentListComponent = props => {
                     styles.title2,
                     status ? darkMode.textColor : lightMode.textColor,
                   ]}>
-                  {item?.status}
+                  {/* {item?.status} */}
+                  {'Completed'}
                 </Text>
               </View>
             </View>
@@ -515,7 +531,7 @@ const AppointmentListComponent = props => {
                     styles.title2,
                     status ? darkMode.textColor : lightMode.textColor,
                   ]}>
-                  {item?.spInfo?.role}
+                  {'item?.spInfo?.role'}
                 </Text>
               </View>
               <View style={styles.container11}>
@@ -535,7 +551,7 @@ const AppointmentListComponent = props => {
                     styles.title2,
                     status ? darkMode.textColor : lightMode.textColor,
                   ]}>
-                  {item?.fees?.title}
+                  {'500'}
                 </Text>
               </View>
             </View>

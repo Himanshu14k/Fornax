@@ -10,6 +10,7 @@ import {
   ScrollView,
   Alert,
   Platform,
+  StatusBar,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {Icon} from '@rneui/themed';
@@ -17,13 +18,14 @@ import SimpleToast from 'react-native-simple-toast';
 import axios from 'axios';
 import {styles1, styles3, styles2} from './style';
 import {darkMode, lightMode} from '../../../Utils/Colors';
-import {widthToDp} from '../../../Utils/dimensionsInPixel';
+import {heightToDp, widthToDp} from '../../../Utils/dimensionsInPixel';
 import ImagePicker from 'react-native-image-crop-picker';
 import SwitchComponent from '../../../Components/Molecules/Switch/switchComponent';
 import {setAuthStatus} from '../../../States/Actions/AuthStatusActions/actions';
 import {MediaSelectionOptionModal} from '../../../Components/Molecules/MediaSelectionOptions/mediaSelectionOptionModal';
 import {androidCameraPermission} from '../../../Utils/DifferentPermissionAccess';
-import { navigate } from '../../../Navigations/navigationServices';
+import {navigate} from '../../../Navigations/navigationServices';
+import Spacer from '../../../Components/Atoms/Spacer';
 
 const ProfileScreen = props => {
   const status = useSelector(state => state.otherReducer.status);
@@ -296,6 +298,7 @@ const TopAreaContainerComponent = () => {
   const status = useSelector(state => state.otherReducer.status);
   return (
     <View style={styles2.container1}>
+      <Spacer height={Platform.OS === 'ios' ? heightToDp(3) : heightToDp(3)} />
       <View style={styles2.container2}>
         <Text
           style={[
@@ -492,7 +495,7 @@ const BottomAreaContainerComponent = props => {
               styles3.title1,
               status ? darkMode.textColor : lightMode.textColor,
             ]}>
-            {"name"}
+            {'name'}
           </Text>
         </View>
       </View>
